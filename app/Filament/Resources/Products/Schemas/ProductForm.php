@@ -32,6 +32,7 @@ class ProductForm
                     ->unique(ignoreRecord: true),
                 FileUpload::make('image')
                     ->image()
+                    ->disk('public')
                     ->directory('products'),
                 RichEditor::make('description')
                     ->columnSpanFull(),

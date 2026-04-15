@@ -44,6 +44,7 @@ class TestimonialForm
                                 FileUpload::make('image')
                                     ->label('Foto Hasil Pekerjaan / Pelanggan')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('testimonials')
                                     ->visibility('public'),
                                 Toggle::make('is_active')

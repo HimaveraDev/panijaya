@@ -23,6 +23,7 @@ class CategoryForm
                     ->unique(ignoreRecord: true),
                 FileUpload::make('image')
                     ->image()
+                    ->disk('public')
                     ->directory('categories'),
             ]);
     }

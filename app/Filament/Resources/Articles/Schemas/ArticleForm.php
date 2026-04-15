@@ -28,6 +28,7 @@ class ArticleForm
                     ->columnSpanFull(),
                 FileUpload::make('thumbnail')
                     ->image()
+                    ->disk('public')
                     ->directory('articles'),
                 DateTimePicker::make('published_at')
                     ->label('Publish Date'),
