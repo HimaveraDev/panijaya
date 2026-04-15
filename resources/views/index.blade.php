@@ -71,7 +71,7 @@
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-xl font-semibold mb-2">Material Berkualitas</h4>
-                                <p class="text-gray-600">Kami hanya menggunakan kayu pilihan (Jati, Mahoni, Meranti) dan aluminium premium yang tahan lama serta estetik.</p>
+                                <p class="text-gray-600">Kami hanya menggunakan kayu pilihan (Jati, Mahoni, Meranti Kamper, Samarinda, Merbau) dan aluminium premium yang tahan lama serta estetik.</p>
                             </div>
                         </div>
 
@@ -81,7 +81,7 @@
                             </div>
                             <div class="ml-4">
                                 <h4 class="text-xl font-semibold mb-2">Custom Desain</h4>
-                                <p class="text-gray-600">Sesuaikan ukuran dan model kusen, pintu, atau jendela Anda sesuai dengan selera dan kebutuhan arsitektur rumah.</p>
+                                <p class="text-gray-600">Sesuaikan ukuran dan model kusen, pintu, jendela, atau roster Anda sesuai dengan selera dan kebutuhan arsitektur rumah.</p>
                             </div>
                         </div>
 

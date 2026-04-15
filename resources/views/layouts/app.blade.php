@@ -21,7 +21,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="text-xl font-black tracking-tighter text-black uppercase">PANI JAYA</a>
+                    <a href="/" class="flex items-center">
+                        <img src="{{ asset('images/logo.png') }}" alt="Pani Jaya Logo" class="h-20 w-auto">
+                    </a>
                 </div>
                 
                 <div class="flex items-center space-x-8">
