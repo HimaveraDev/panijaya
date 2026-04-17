@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\PricingSetting;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -25,7 +26,10 @@ class ProductController extends Controller
 
         $products = $query->latest()->paginate(12);
 
-        return view('catalog', compact('products', 'categories'));
+        // Ambil pricing dari DB; fallback otomatis ke config jika tabel kosong
+        $pricingConfig = PricingSetting::toPricingConfig();
+
+        return view('catalog', compact('products', 'categories', 'pricingConfig'));
     }
 
     public function show(Product $product)

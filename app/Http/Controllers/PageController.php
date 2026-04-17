@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Article;
 use App\Models\Testimonial;
-use Illuminate\Http\Request;
+use App\Models\ProjectGallery;
 
 class PageController extends Controller
 {
@@ -28,5 +28,11 @@ class PageController extends Controller
     public function payment()
     {
         return view('payment');
+    }
+
+    public function portfolio()
+    {
+        $projects = ProjectGallery::latest('installation_date')->paginate(12);
+        return view('portfolio', compact('projects'));
     }
 }

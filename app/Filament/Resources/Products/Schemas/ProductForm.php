@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Products\Schemas;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\KeyValue;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Components\Utilities\Set;
@@ -36,7 +36,12 @@ class ProductForm
                     ->directory('products'),
                 RichEditor::make('description')
                     ->columnSpanFull(),
-                KeyValue::make('specifications')
+                Repeater::make('specifications')
+                    ->schema([
+                        TextInput::make('key')->label('Nama Kolom (Kunci)')->required(),
+                        TextInput::make('value')->label('Isi Spesifikasi (Nilai)')->required(),
+                    ])
+                    ->columns(2)
                     ->columnSpanFull(),
                 Toggle::make('is_featured')
                     ->default(false),
