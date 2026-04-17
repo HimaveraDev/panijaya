@@ -8,6 +8,7 @@ use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Set;
 use Illuminate\Support\Str;
 use Filament\Schemas\Schema;
@@ -45,6 +46,28 @@ class ProductForm
                     ->columnSpanFull(),
                 Toggle::make('is_featured')
                     ->default(false),
+                TextInput::make('base_price')
+                    ->label('Harga Dasar')
+                    ->numeric()
+                    ->minValue(0)
+                    ->prefix('Rp'),
+                Section::make('Opsi Harga Tambahan')
+                    ->schema([
+                        Repeater::make('priceOptions')
+                            ->relationship('priceOptions')
+                            ->schema([
+                                TextInput::make('label')
+                                    ->required()
+                                    ->label('Nama Opsi'),
+                                TextInput::make('price')
+                                    ->numeric()
+                                    ->required()
+                                    ->minValue(0)
+                                    ->prefix('Rp')
+                            ])
+                            ->defaultItems(0)
+                            ->columns(2)
+                    ])
             ]);
     }
 }

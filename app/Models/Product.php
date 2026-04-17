@@ -14,6 +14,7 @@ class Product extends Model
         'description',
         'specifications',
         'is_featured',
+        'base_price',
     ];
 
     protected $casts = [
@@ -24,5 +25,10 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function priceOptions()
+    {
+        return $this->hasMany(ProductPriceOption::class);
     }
 }
