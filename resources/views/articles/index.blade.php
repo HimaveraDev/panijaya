@@ -17,15 +17,7 @@
                     @foreach($articles as $article)
                     <article class="bg-white rounded-3xl overflow-hidden group shadow-sm hover:shadow-2xl transition-all border border-gray-100">
                         <div class="h-64 overflow-hidden relative">
-                            @php
-                                $articleImg = $article->thumbnail;
-                                if ($articleImg && !Str::startsWith($articleImg, ['http', 'build/', 'images/'])) {
-                                    $articleImg = asset('storage/' . $articleImg);
-                                } else {
-                                    $articleImg = $articleImg ? asset($articleImg) : 'https://images.unsplash.com/photo-1588644972368-d1e5927d9220?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-                                }
-                            @endphp
-                            <img src="{{ $articleImg }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $article->title }}">
+                            <img src="{{ $article->image_url }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="{{ $article->title }}">
                             <div class="absolute top-4 left-4">
                                 <span class="bg-wood-600 text-white text-[10px] px-3 py-1.5 rounded-full font-bold uppercase tracking-wider">
                                     {{ $article->published_at?->format('d M Y') }}

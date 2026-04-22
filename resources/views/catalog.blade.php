@@ -42,6 +42,9 @@
                         <div class="mt-12 pt-8 border-t border-gray-100">
                             <h3 class="text-lg font-bold mb-6">Cari Produk</h3>
                             <form action="/katalog" method="GET">
+                                @if(request('kategori'))
+                                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                                @endif
                                 <div class="relative">
                                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Nama produk..." class="w-full pl-4 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-wood-500 focus:border-wood-500 text-sm">
                                     <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
@@ -64,15 +67,7 @@
                             @foreach($products as $product)
                             <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
                                 <div class="relative h-64 overflow-hidden">
-                                    @php
-                                        $prodImg = $product->image;
-                                        if ($prodImg && !Str::startsWith($prodImg, ['http', 'build/', 'images/'])) {
-                                            $prodImg = asset('storage/' . $prodImg);
-                                        } else {
-                                            $prodImg = $prodImg ? asset($prodImg) : 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-                                        }
-                                    @endphp
-                                    <img src="{{ $prodImg }}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="{{ $product->name }}">
+                                    <img src="{{ $product->image_url }}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="{{ $product->name }}">
                                     @if($product->is_featured)
                                     <div class="absolute top-4 left-4">
                                         <span class="bg-wood-600 text-white text-[10px] px-2 py-1 rounded uppercase tracking-widest font-bold">Featured</span>
@@ -104,7 +99,13 @@
          fallback ke config/pricing.php jika tabel kosong).
     ============================================================ --}}
     @php
-        $waNumber = config('services.panijaya.wa_number', '628123456789');
+    $rawWa = $siteSettings->whatsapp_number;
+    $waNumber = preg_replace('/[^0-9]/', '', $rawWa);
+    
+    // Jika diawali 0, konversi ke 62 (Opsional tapi direkomendasikan)
+    if (str_starts_with($waNumber, '0')) {
+        $waNumber = '62' . substr($waNumber, 1);
+    }
     @endphp
 
     <section class="py-20 bg-gray-900">

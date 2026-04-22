@@ -22,6 +22,19 @@ class Product extends Model
         'is_featured' => 'boolean',
     ];
 
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return asset('images/placeholder.png');
+        }
+
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        return asset('storage/' . $this->image);
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);

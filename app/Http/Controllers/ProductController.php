@@ -24,7 +24,7 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $products = $query->latest()->paginate(12);
+        $products = $query->latest()->paginate(12)->withQueryString();
 
         // Ambil pricing dari DB; fallback otomatis ke config jika tabel kosong
         $pricingConfig = PricingSetting::toPricingConfig();
@@ -34,7 +34,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        $relatedProducts = Product::where('category_id', $product->category_id)
+        $relatedProducts = Product::with('category')->where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->limit(4)
             ->get();

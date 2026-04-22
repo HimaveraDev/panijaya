@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? $siteSettings->site_name . ' - Kusen Berkualitas' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +23,7 @@
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/" class="flex items-center">
-                        <img src="{{ $siteSettings->logo_path ? asset('storage/' . $siteSettings->logo_path) : asset('images/logo.png') }}" alt="{{ $siteSettings->site_name }} Logo" style="height: {{ $siteSettings->logo_height ?? 40 }}px; width: auto;">
+                        <img src="{{ $siteSettings->logo_url }}" alt="{{ $siteSettings->site_name }} Logo" style="height: {{ $siteSettings->logo_height ?? 30 }}px; width: auto;">
                     </a>
                 </div>
                 

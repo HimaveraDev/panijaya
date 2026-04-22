@@ -22,13 +22,7 @@
                 <div class="group relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 transform border border-gray-100">
                     <!-- Image Wrapper -->
                     <div class="relative w-full h-72 overflow-hidden bg-gray-200">
-                        @php
-                            $img = $project->image;
-                            if ($img && !Str::startsWith($img, ['http', 'build/', 'images/'])) {
-                                $img = asset('storage/' . $img);
-                            }
-                        @endphp
-                        <img src="{{ $img }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
+                        <img src="{{ $project->image_url }}" alt="{{ $project->title }}" class="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-110">
                         
                         <!-- Hover Overlay (Gradient) -->
                         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

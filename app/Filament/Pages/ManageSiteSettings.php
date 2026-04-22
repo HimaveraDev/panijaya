@@ -53,8 +53,11 @@ class ManageSiteSettings extends Page implements HasForms
                                 FileUpload::make('logo_path')
                                     ->label('Logo Website')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('site')
-                                    ->visibility('public'),
+                                    ->visibility('public')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
+                                    ->maxSize(1024),
                                 TextInput::make('logo_height')
                                     ->label('Tinggi Logo (px)')
                                     ->numeric()
@@ -70,8 +73,11 @@ class ManageSiteSettings extends Page implements HasForms
                         FileUpload::make('hero_image')
                             ->label('Gambar Hero (Header)')
                             ->image()
+                            ->disk('public')
                             ->directory('site')
-                            ->visibility('public'),
+                            ->visibility('public')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(3072),
                         TextInput::make('hero_title')
                             ->label('Judul Hero'),
                         Textarea::make('hero_description')
@@ -109,8 +115,11 @@ class ManageSiteSettings extends Page implements HasForms
                         FileUpload::make('features_image')
                             ->label('Gambar Utama Seksi Keunggulan')
                             ->image()
+                            ->disk('public')
                             ->directory('site')
-                            ->visibility('public'),
+                            ->visibility('public')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(2048),
                         
                         Grid::make(3)
                             ->components([
@@ -156,8 +165,11 @@ class ManageSiteSettings extends Page implements HasForms
                         FileUpload::make('about_image')
                             ->label('Gambar Perusahaan/Workshop')
                             ->image()
+                            ->disk('public')
                             ->directory('site')
-                            ->visibility('public'),
+                            ->visibility('public')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(2048),
                         RichEditor::make('about_history')
                             ->label('Sejarah Perusahaan')
                             ->toolbarButtons([

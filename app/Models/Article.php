@@ -17,4 +17,17 @@ class Article extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->thumbnail) {
+            return asset('images/placeholder.png');
+        }
+
+        if (str_starts_with($this->thumbnail, 'http')) {
+            return $this->thumbnail;
+        }
+
+        return asset('storage/' . $this->thumbnail);
+    }
 }

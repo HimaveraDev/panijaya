@@ -23,6 +23,7 @@ Route::get('/artikel/{article:slug}', [ArticleController::class, 'show'])->name(
 
 // Inquiries
 Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
+Route::post('/generate-wa-message', [InquiryController::class, 'generateWaMessage'])->name('generate.wa.message');
 
 // Portfolio
 Route::get('/portofolio', [PageController::class, 'portfolio'])->name('portfolio');

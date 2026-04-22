@@ -11,6 +11,7 @@ class Inquiry extends Model
         'name',
         'phone',
         'location',
+        'message',
         'status',
     ];
 

@@ -35,8 +35,4 @@ return [
         ],
     ],
 
-    'panijaya' => [
-        'wa_number' => env('PANIJAYA_WA_NUMBER', '628123456789'),
-    ],
-
 ];

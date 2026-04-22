@@ -24,7 +24,10 @@ class CategoryForm
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')
-                    ->directory('categories'),
+                    ->directory('categories')
+                    ->visibility('public')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048),
             ]);
     }
 }

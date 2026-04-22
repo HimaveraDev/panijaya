@@ -29,7 +29,10 @@ class ArticleForm
                 FileUpload::make('thumbnail')
                     ->image()
                     ->disk('public')
-                    ->directory('articles'),
+                    ->directory('articles')
+                    ->visibility('public')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048),
                 DateTimePicker::make('published_at')
                     ->label('Publish Date'),
             ]);

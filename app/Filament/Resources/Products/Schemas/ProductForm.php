@@ -34,7 +34,10 @@ class ProductForm
                 FileUpload::make('image')
                     ->image()
                     ->disk('public')
-                    ->directory('products'),
+                    ->directory('products')
+                    ->visibility('public')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048),
                 RichEditor::make('description')
                     ->columnSpanFull(),
                 Repeater::make('specifications')

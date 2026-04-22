@@ -46,7 +46,9 @@ class TestimonialForm
                                     ->image()
                                     ->disk('public')
                                     ->directory('testimonials')
-                                    ->visibility('public'),
+                                    ->visibility('public')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->maxSize(2048),
                                 Toggle::make('is_active')
                                     ->label('Tampilkan di Website')
                                     ->inline(false)

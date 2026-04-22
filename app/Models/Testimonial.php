@@ -14,4 +14,17 @@ class Testimonial extends Model
         'rating',
         'is_active',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return asset('images/placeholder.png');
+        }
+
+        if (str_starts_with($this->image, 'http')) {
+            return $this->image;
+        }
+
+        return asset('storage/' . $this->image);
+    }
 }

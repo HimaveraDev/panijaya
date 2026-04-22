@@ -24,7 +24,11 @@ class ProjectGalleryForm
                     ->required(),
                 FileUpload::make('image')
                     ->image()
+                    ->disk('public')
                     ->directory('projects')
+                    ->visibility('public')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048)
                     ->columnSpanFull(),
                 RichEditor::make('description')
                     ->columnSpanFull(),

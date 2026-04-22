@@ -9,9 +9,13 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
+use App\Http\Requests\StoreInquiryRequest;
+use App\Models\ProductPriceOption;
+use App\Models\SiteSetting;
+
 class InquiryController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreInquiryRequest $request)
     {
         // Rate Limiter: max 3 requests per IP per minute
         if (RateLimiter::tooManyAttempts('inquiry:' . $request->ip(), 3)) {
@@ -21,12 +25,7 @@ class InquiryController extends Controller
 
         RateLimiter::hit('inquiry:' . $request->ip());
 
-        $validated = $request->validate([
-            'product_id' => 'required|exists:products,id',
-            'name'       => 'required|string|max:255',
-            'phone'      => 'required|string|max:50',
-            'location'   => 'required|string|max:255',
-        ]);
+        $validated = $request->validated();
 
         // Phone sanitization: remove non-numeric chars
         $phone = preg_replace('/[^0-9]/', '', $validated['phone']);
@@ -43,20 +42,45 @@ class InquiryController extends Controller
             'name'       => $validated['name'],
             'phone'      => $phone,
             'location'   => $validated['location'],
+            'message'    => $validated['message'] ?? null,
             'status'     => 'new',
         ]);
 
         // Prepare info for WhatsApp
         $product = Product::findOrFail($validated['product_id']);
-        $waNumber = config('services.panijaya.wa_number', '628123456789');
+        $siteSettings = SiteSetting::get();
+        $waNumber = $siteSettings->whatsapp_number;
+        $waNumberNormalized = preg_replace('/[^0-9]/', '', $waNumber);
+        if (Str::startsWith($waNumberNormalized, '0')) {
+            $waNumberNormalized = '62' . substr($waNumberNormalized, 1);
+        }
 
-        $message = "Halo Pani Jaya, saya *" . $validated['name'] . "* dari *" . $validated['location'] . "*. \n\nSaya ingin bertanya tentang produk: *" . $product->name . "*.";
-        $waLink = "https://wa.me/" . $waNumber . "?text=" . urlencode($message);
+        $message = "Halo Pani Jaya, saya *" . $validated['name'] . "* dari *" . $validated['location'] . "*. \n\nSaya ingin bertanya tentang produk: *" . $product->name . "*.\n\nPesan: " . ($validated['message'] ?? '-');
+        $waLink = "https://wa.me/" . $waNumberNormalized . "?text=" . urlencode($message);
 
-        // Redirect directly to WhatsApp without target blank (since logic is handled in controller now)
-        // Note: the `target="_blank"` on the form will open this route in a new tab if used,
-        // but the prompt said "Hapus target='_blank'" from the form.
-        // Therefore, this redirect will happen in the same window.
         return redirect()->away($waLink);
+    }
+
+    public function generateWaMessage(Request $request)
+    {
+        $product = Product::findOrFail($request->product_id);
+
+        $total = $product->base_price;
+
+        if ($request->has('options')) {
+            foreach ($request->options as $optionId) {
+                $option = ProductPriceOption::where('product_id', $product->id)
+                    ->find($optionId);
+
+                if ($option) {
+                    $total += $option->price;
+                }
+            }
+        }
+
+        return response()->json([
+            'total' => $total,
+            'formatted' => 'Rp ' . number_format($total, 0, ',', '.')
+        ]);
     }
 }

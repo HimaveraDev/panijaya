@@ -4,7 +4,7 @@
     <!-- Hero Section -->
     <section class="relative h-[85vh] flex items-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="{{ $siteSettings->hero_image ? asset('storage/' . $siteSettings->hero_image) : asset('build/assets/wall1.png') }}" class="w-full h-full object-cover" alt="Modern House">
+            <img src="{{ $siteSettings->hero_image_url }}" class="w-full h-full object-cover" alt="Modern House">
             <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
         </div>
         
@@ -49,10 +49,7 @@
                             <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden h-full flex flex-col hover:shadow-md transition-all duration-300">
                                 <!-- Photo Landscape (Compact) -->
                                 <div class="w-full aspect-[16/9] bg-gray-50">
-                                    @php
-                                        $testimonialImage = $testimonial->image ? asset('storage/' . $testimonial->image) : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80';
-                                    @endphp
-                                    <img src="{{ $testimonialImage }}" class="w-full h-full object-cover" alt="{{ $testimonial->name }}">
+                                    <img src="{{ $testimonial->image_url }}" class="w-full h-full object-cover" alt="{{ $testimonial->name }}">
                                 </div>
                                 
                                 <!-- Content Below (Very compact) -->
@@ -114,17 +111,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($categories as $category)
                 <a href="/katalog?kategori={{ $category->slug }}" class="group relative h-80 rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2">
-                    @php
-                        $imagePath = $category->image;
-                        if ($imagePath && !Str::startsWith($imagePath, ['http', 'build/', 'images/'])) {
-                            $imagePath = asset('storage/' . $imagePath);
-                        } elseif ($imagePath) {
-                            $imagePath = asset($imagePath);
-                        }
-                        // Fallback image if both DB and asset are missing
-                        $imagePath = $imagePath ?: 'https://images.unsplash.com/photo-1541824232763-d11283d47443?auto=format&fit=crop&w=800&q=80';
-                    @endphp
-                    <img src="{{ $imagePath }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ $category->name }}">
+                    <img src="{{ $category->image_url }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ $category->name }}">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                     <div class="absolute bottom-0 left-0 p-6">
                         <h3 class="text-xl font-bold text-white">{{ $category->name }}</h3>
@@ -183,7 +170,7 @@
                 </div>
                 
                 <div class="w-full lg:w-1/2 relative">
-                    <img src="{{ $siteSettings->features_image ? asset('storage/' . $siteSettings->features_image) : 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80' }}" class="rounded-3xl shadow-2xl relative z-10" alt="Features">
+                    <img src="{{ $siteSettings->features_image_url }}" class="rounded-3xl shadow-2xl relative z-10" alt="Features">
                     <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-wood-600 rounded-2xl -z-0 opacity-20"></div>
                 </div>
             </div>
@@ -205,15 +192,7 @@
                 @foreach($featuredProducts as $product)
                 <div class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
                     <div class="relative h-64 overflow-hidden">
-                        @php
-                            $prodImg = $product->image;
-                            if ($prodImg && !Str::startsWith($prodImg, ['http', 'build/', 'images/'])) {
-                                $prodImg = asset('storage/' . $prodImg);
-                            } else {
-                                $prodImg = $prodImg ? asset($prodImg) : 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-                            }
-                        @endphp
-                        <img src="{{ $prodImg }}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="{{ $product->name }}">
+                        <img src="{{ $product->image_url }}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="{{ $product->name }}">
                         <div class="absolute top-4 left-4">
                             <span class="bg-wood-600 text-white text-[10px] px-2 py-1 rounded uppercase tracking-widest font-bold">Featured</span>
                         </div>
@@ -255,15 +234,7 @@
                 @foreach($latestArticles as $article)
                 <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group">
                     <div class="h-56 overflow-hidden">
-                        @php
-                            $thumb = $article->thumbnail;
-                            if ($thumb && !Str::startsWith($thumb, ['http', 'build/', 'images/'])) {
-                                $thumb = asset('storage/' . $thumb);
-                            } else {
-                                $thumb = $thumb ? asset($thumb) : 'https://images.unsplash.com/photo-1588644972368-d1e5927d9220?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80';
-                            }
-                        @endphp
-                        <img src="{{ $thumb }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="{{ $article->title }}">
+                        <img src="{{ $article->image_url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="{{ $article->title }}">
                     </div>
                     <div class="p-8">
                         <span class="text-wood-600 font-bold text-xs uppercase tracking-widest">{{ $article->published_at?->format('d M Y') }}</span>

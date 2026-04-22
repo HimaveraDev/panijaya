@@ -12,7 +12,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center border-b border-gray-100 pb-24">
                 <div class="w-full lg:w-1/2">
-                    <img src="{{ $siteSettings->about_image ? asset('storage/' . $siteSettings->about_image) : 'https://images.unsplash.com/photo-1541824232763-d11283d47443?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80' }}" class="rounded-3xl shadow-2xl" alt="Pani Jaya Workshop">
+                    <img src="{{ $siteSettings->about_image_url }}" class="rounded-3xl shadow-2xl" alt="Pani Jaya Workshop">
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold mb-6 text-gray-900">{{ $siteSettings->about_history_title ?? 'Sejarah & Visi Pani Jaya' }}</h2>

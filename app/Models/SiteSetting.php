@@ -37,4 +37,24 @@ class SiteSetting extends Model
             'logo_height' => 40,
         ]);
     }
+
+    public function getLogoUrlAttribute()
+    {
+        return $this->logo_path ? asset('storage/' . $this->logo_path) : asset('images/logo_nobg.png');
+    }
+
+    public function getHeroImageUrlAttribute()
+    {
+        return $this->hero_image ? asset('storage/' . $this->hero_image) : asset('images/hero-placeholder.jpg');
+    }
+
+    public function getFeaturesImageUrlAttribute()
+    {
+        return $this->features_image ? asset('storage/' . $this->features_image) : asset('images/features-placeholder.jpg');
+    }
+
+    public function getAboutImageUrlAttribute()
+    {
+        return $this->about_image ? asset('storage/' . $this->about_image) : asset('images/about-placeholder.jpg');
+    }
 }
