@@ -22,7 +22,7 @@ Route::get('/artikel', [ArticleController::class, 'index'])->name('article.index
 Route::get('/artikel/{article:slug}', [ArticleController::class, 'show'])->name('article.show');
 
 // Inquiries
-Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
+Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store')->middleware('throttle:3,1');
 Route::post('/generate-wa-message', [InquiryController::class, 'generateWaMessage'])->name('generate.wa.message');
 
 // Portfolio
