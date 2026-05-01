@@ -189,6 +189,29 @@ class ManageSiteSettings extends Page implements HasForms
                             ])
                             ->columnSpanFull(),
                     ]),
+
+                Section::make('Link Marketplace Global')
+                    ->description('Atur link marketplace resmi untuk ditampilkan di seluruh halaman website.')
+                    ->components([
+                        TextInput::make('shopee_url')
+                            ->url()
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('https://shopee.co.id/...')
+                            ->helperText('Masukkan link toko resmi di Shopee (opsional)')
+                            ->columnSpanFull(),
+                        TextInput::make('tokopedia_url')
+                            ->url()
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('https://tokopedia.com/...')
+                            ->helperText('Masukkan link toko resmi di Tokopedia (opsional)')
+                            ->columnSpanFull(),
+                        TextInput::make('tiktok_url')
+                            ->url()
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('https://tiktok.com/...')
+                            ->helperText('Masukkan link toko resmi di TikTok Shop (opsional)')
+                            ->columnSpanFull(),
+                    ]),
             ])
             ->statePath('data');
     }

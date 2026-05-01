@@ -70,6 +70,27 @@ class ProductForm
                             ])
                             ->defaultItems(0)
                             ->columns(2)
+                    ]),
+                Section::make('Link Marketplace')
+                    ->schema([
+                        TextInput::make('shopee_url')
+                            ->url()
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('https://shopee.co.id/...')
+                            ->helperText('Masukkan link produk marketplace (opsional)')
+                            ->columnSpanFull(),
+                        TextInput::make('tokopedia_url')
+                            ->url()
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('https://tokopedia.com/...')
+                            ->helperText('Masukkan link produk marketplace (opsional)')
+                            ->columnSpanFull(),
+                        TextInput::make('tiktok_url')
+                            ->url()
+                            ->prefixIcon('heroicon-o-link')
+                            ->placeholder('https://tiktok.com/...')
+                            ->helperText('Masukkan link produk marketplace (opsional)')
+                            ->columnSpanFull(),
                     ])
             ]);
     }

@@ -43,6 +43,40 @@
         </div>
     </section>
 
+    @if($siteSettings->hasMarketplace())
+    <section class="py-16 bg-gray-50 border-y border-gray-100 text-center">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-lg font-bold text-gray-900 mb-6">Kunjungi Toko Resmi Kami di Marketplace</h3>
+            <div class="flex justify-center items-center gap-8 flex-wrap">
+                @if(isset($siteSettings->marketplace_links['shopee']))
+                <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="text-gray-400 hover:text-orange-500 transition-colors flex flex-col items-center gap-2 group">
+                    <div class="p-3 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <span class="text-sm font-semibold">Shopee</span>
+                </a>
+                @endif
+                @if(isset($siteSettings->marketplace_links['tokopedia']))
+                <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="text-gray-400 hover:text-green-500 transition-colors flex flex-col items-center gap-2 group">
+                    <div class="p-3 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <span class="text-sm font-semibold">Tokopedia</span>
+                </a>
+                @endif
+                @if(isset($siteSettings->marketplace_links['tiktok']))
+                <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="text-gray-400 hover:text-black transition-colors flex flex-col items-center gap-2 group">
+                    <div class="p-3 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <span class="text-sm font-semibold">TikTok Shop</span>
+                </a>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
+
     <!-- Map Section -->
     <section class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

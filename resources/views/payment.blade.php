@@ -59,6 +59,54 @@
                     </div>
                 </div>
 
+                @if($siteSettings->hasMarketplace())
+                <div class="mt-8 border-t pt-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <h4 class="font-bold text-gray-900 text-lg">Alternatif Pembayaran (Marketplace)</h4>
+                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Praktis & Aman</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6">Nikmati kemudahan transaksi melalui platform marketplace favorit Anda. Dapatkan fitur cicilan, promo gratis ongkir, dan perlindungan pembeli (e-wallet, paylater, credit card).</p>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        @if(isset($siteSettings->marketplace_links['shopee']))
+                        <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 hover:shadow-md transition-all group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                </div>
+                                <span class="font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Shopee</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-300 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                        @endif
+
+                        @if(isset($siteSettings->marketplace_links['tokopedia']))
+                        <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:shadow-md transition-all group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                </div>
+                                <span class="font-bold text-gray-900 group-hover:text-green-500 transition-colors">Tokopedia</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-300 group-hover:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                        @endif
+
+                        @if(isset($siteSettings->marketplace_links['tiktok']))
+                        <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-black hover:shadow-md transition-all group">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-900">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                </div>
+                                <span class="font-bold text-gray-900 group-hover:text-black transition-colors">TikTok Shop</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-300 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </a>
+                        @endif
+                    </div>
+                </div>
+                @endif
+
                 <div class="mt-12 bg-wood-50 p-6 rounded-2xl border border-wood-100 flex items-center">
                     <svg class="w-6 h-6 text-wood-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     <p class="text-sm text-wood-900">Pastikan Anda hanya melakukan transfer ke nomor rekening resmi di atas untuk keamanan transaksi.</p>

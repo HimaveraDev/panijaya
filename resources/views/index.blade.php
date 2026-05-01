@@ -24,6 +24,55 @@
         </div>
     </section>
 
+    <!-- Marketplace Section -->
+    @if($siteSettings->hasMarketplace())
+    <section class="py-12 bg-white border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">Belanja Lebih Mudah di Marketplace Favorit Anda</h2>
+                <p class="text-gray-500 text-sm">Temukan produk kami di berbagai platform marketplace terpercaya</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-6">
+                @if(isset($siteSettings->marketplace_links['shopee']))
+                <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="flex items-center px-8 py-4 bg-white border-2 border-orange-100 hover:border-orange-500 rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 group">
+                    <div class="w-10 h-10 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Official Store</p>
+                        <p class="text-lg font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Shopee</p>
+                    </div>
+                </a>
+                @endif
+                
+                @if(isset($siteSettings->marketplace_links['tokopedia']))
+                <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="flex items-center px-8 py-4 bg-white border-2 border-green-100 hover:border-green-500 rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 group">
+                    <div class="w-10 h-10 bg-green-100 text-green-500 rounded-full flex items-center justify-center mr-4 group-hover:bg-green-500 group-hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Official Store</p>
+                        <p class="text-lg font-bold text-gray-900 group-hover:text-green-500 transition-colors">Tokopedia</p>
+                    </div>
+                </a>
+                @endif
+
+                @if(isset($siteSettings->marketplace_links['tiktok']))
+                <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="flex items-center px-8 py-4 bg-white border-2 border-gray-200 hover:border-black rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 group">
+                    <div class="w-10 h-10 bg-gray-100 text-gray-900 rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Official Store</p>
+                        <p class="text-lg font-bold text-gray-900 group-hover:text-black transition-colors">TikTok Shop</p>
+                    </div>
+                </a>
+                @endif
+            </div>
+        </div>
+    </section>
+    @endif
+
     <!-- Testimoni Section -->
     <section class="py-16 bg-gray-50 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

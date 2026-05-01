@@ -96,6 +96,34 @@
                         </div>
                         @endif
                     </div>
+                    
+                    @if($product->hasMarketplace())
+                    <div class="mt-6 border border-gray-100 p-6 rounded-2xl bg-white shadow-sm">
+                        <h3 class="text-lg font-bold mb-4 text-gray-900">Beli via Marketplace</h3>
+                        <div class="flex flex-col gap-3">
+                            @if(isset($product->marketplace_links['shopee']))
+                            <a href="{{ $product->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="w-full inline-flex justify-center items-center px-6 py-3 bg-orange-500 border border-transparent rounded-xl shadow-md text-white font-bold hover:bg-orange-600 transition-all transform hover:scale-[1.02]">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                Beli di Shopee
+                            </a>
+                            @endif
+                            
+                            @if(isset($product->marketplace_links['tokopedia']))
+                            <a href="{{ $product->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="w-full inline-flex justify-center items-center px-6 py-3 bg-green-500 border border-transparent rounded-xl shadow-md text-white font-bold hover:bg-green-600 transition-all transform hover:scale-[1.02]">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                Beli di Tokopedia
+                            </a>
+                            @endif
+
+                            @if(isset($product->marketplace_links['tiktok']))
+                            <a href="{{ $product->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="w-full inline-flex justify-center items-center px-6 py-3 bg-black border border-transparent rounded-xl shadow-md text-white font-bold hover:bg-gray-900 transition-all transform hover:scale-[1.02]">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                Beli di TikTok Shop
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                    @endif
                 </div>
             </div>
         </div>

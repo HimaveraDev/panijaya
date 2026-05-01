@@ -15,6 +15,9 @@ class Product extends Model
         'specifications',
         'is_featured',
         'base_price',
+        'shopee_url',
+        'tokopedia_url',
+        'tiktok_url',
     ];
 
     protected $casts = [
@@ -43,5 +46,19 @@ class Product extends Model
     public function priceOptions()
     {
         return $this->hasMany(ProductPriceOption::class);
+    }
+
+    public function getMarketplaceLinksAttribute()
+    {
+        return array_filter([
+            'shopee' => $this->shopee_url,
+            'tokopedia' => $this->tokopedia_url,
+            'tiktok' => $this->tiktok_url,
+        ]);
+    }
+
+    public function hasMarketplace()
+    {
+        return !empty($this->marketplace_links);
     }
 }

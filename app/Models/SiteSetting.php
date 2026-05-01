@@ -57,4 +57,18 @@ class SiteSetting extends Model
     {
         return $this->about_image ? asset('storage/' . $this->about_image) : asset('images/about-placeholder.jpg');
     }
+
+    public function getMarketplaceLinksAttribute()
+    {
+        return array_filter([
+            'shopee' => $this->shopee_url,
+            'tokopedia' => $this->tokopedia_url,
+            'tiktok' => $this->tiktok_url,
+        ]);
+    }
+
+    public function hasMarketplace()
+    {
+        return !empty($this->marketplace_links);
+    }
 }
