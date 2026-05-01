@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? $siteSettings->site_name . ' - Kusen Berkualitas' }}</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    {{-- SEO Meta Tags Utama --}}
+    <title>{{ $title ?? $siteSettings->site_name . ' - Kusen Kayu & Aluminium Berkualitas Bekasi' }}</title>
+    <meta name="description" content="{{ $metaDescription ?? $siteSettings->hero_description ?? 'Penyedia kusen, pintu, jendela, & roster berkualitas tinggi dengan material terbaik dan desain modern untuk hunian impian Anda di Bekasi dan sekitarnya.' }}">
+    <meta name="keywords" content="{{ $metaKeywords ?? 'kusen kayu, kusen aluminium, pintu kayu, jendela kayu, roster, kusen bekasi, pani jaya, jual kusen murah, pengrajin kayu' }}">
+    <meta name="author" content="{{ $siteSettings->site_name }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Open Graph / Facebook / WhatsApp (Agar bagus saat link di-share) --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="{{ $title ?? $siteSettings->site_name }}">
+    <meta property="og:description" content="{{ $metaDescription ?? $siteSettings->hero_description ?? 'Penyedia kusen, pintu, dan jendela berkualitas tinggi.' }}">
+    <meta property="og:image" content="{{ $metaImage ?? $siteSettings->hero_image_url }}">
+
+    {{-- Twitter --}}
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="{{ $title ?? $siteSettings->site_name }}">
+    <meta property="twitter:description" content="{{ $metaDescription ?? $siteSettings->hero_description ?? 'Penyedia kusen, pintu, dan jendela berkualitas tinggi.' }}">
+    <meta property="twitter:image" content="{{ $metaImage ?? $siteSettings->hero_image_url }}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
