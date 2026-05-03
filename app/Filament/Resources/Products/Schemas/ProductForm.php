@@ -35,9 +35,19 @@ class ProductForm
                     ->image()
                     ->disk('public')
                     ->directory('products')
-                    ->visibility('public')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(2048),
+                FileUpload::make('gallery')
+                    ->label('Foto Lainnya (Galeri)')
+                    ->image()
+                    ->multiple()
+                    ->disk('public')
+                    ->directory('products/gallery')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->maxSize(2048)
+                    ->reorderable()
+                    ->appendFiles()
+                    ->columnSpanFull(),
                 RichEditor::make('description')
                     ->columnSpanFull(),
                 Repeater::make('specifications')

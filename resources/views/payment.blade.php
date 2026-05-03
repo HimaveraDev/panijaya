@@ -71,8 +71,8 @@
                         @if(isset($siteSettings->marketplace_links['shopee']))
                         <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 hover:shadow-md transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500">
+                                    <img src="https://img.icons8.com/color/480/shopee.png" class="w-8 h-8 object-contain" alt="Shopee">
                                 </div>
                                 <span class="font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Shopee</span>
                             </div>
@@ -83,8 +83,8 @@
                         @if(isset($siteSettings->marketplace_links['tokopedia']))
                         <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:shadow-md transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
+                                    <img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png" class="w-8 h-8 object-contain" alt="Tokopedia">
                                 </div>
                                 <span class="font-bold text-gray-900 group-hover:text-green-500 transition-colors">Tokopedia</span>
                             </div>
@@ -95,8 +95,8 @@
                         @if(isset($siteSettings->marketplace_links['tiktok']))
                         <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-black hover:shadow-md transition-all group">
                             <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-900">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                                <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center text-gray-900">
+                                    <img src="https://img.icons8.com/color/480/tiktok--v1.png" class="w-8 h-8 object-contain" alt="TikTok Shop">
                                 </div>
                                 <span class="font-bold text-gray-900 group-hover:text-black transition-colors">TikTok Shop</span>
                             </div>

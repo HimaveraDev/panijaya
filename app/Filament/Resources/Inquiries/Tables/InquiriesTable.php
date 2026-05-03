@@ -15,17 +15,19 @@ class InquiriesTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->defaultSort('created_at', 'desc')
             ->columns([
-                TextColumn::make('created_at')->dateTime()->sortable()->label('Tanggal'),
-                TextColumn::make('name')->searchable()->label('Nama Prospek'),
-                TextColumn::make('phone')->searchable()->copyable()->label('No. WA'),
+                TextColumn::make('created_at')->dateTime('d M Y H:i')->sortable()->label('Tanggal'),
+                TextColumn::make('name')->searchable()->label('Nama')->weight('bold'),
+                TextColumn::make('phone')->searchable()->copyable()->label('No. WA')->icon('heroicon-o-phone'),
                 TextColumn::make('location')->searchable()->label('Lokasi'),
-                TextColumn::make('product.name')->searchable()->label('Produk Terkait')->limit(20),
+                TextColumn::make('product.name')->searchable()->label('Produk')->limit(25)->badge()->color('warning'),
+                TextColumn::make('message')->label('Pesan/Opsi')->limit(60)->wrap()->placeholder('—'),
                 SelectColumn::make('status')
                     ->options([
-                        'new' => 'Baru',
-                        'contacted' => 'Dihubungi',
-                        'closed' => 'Selesai',
+                        'new' => '🔵 Baru',
+                        'contacted' => '🟡 Dihubungi',
+                        'closed' => '🟢 Selesai',
                     ]),
             ])
             ->filters([

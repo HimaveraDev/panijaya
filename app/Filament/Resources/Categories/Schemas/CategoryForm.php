@@ -25,7 +25,6 @@ class CategoryForm
                     ->image()
                     ->disk('public')
                     ->directory('categories')
-                    ->visibility('public')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(2048),
             ]);

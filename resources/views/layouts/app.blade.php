@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta name="google-site-verification" content="daReDEq_stIZ7Uvc53DcK8Zmiulnb5W1ljK7ZKXYhpQ" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -35,17 +36,20 @@
         body {
             font-family: 'Instrument Sans', sans-serif;
         }
+        [x-cloak] { display: none !important; }
     </style>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav class="bg-white sticky top-0 z-50 border-b border-gray-100">
+    <nav x-data="{ mobileMenuOpen: false }" class="bg-white sticky top-0 z-50 border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/" class="flex items-center">
-                        <img src="{{ $siteSettings->logo_url }}" alt="{{ $siteSettings->site_name }} Logo" style="height: {{ $siteSettings->logo_height ?? 30 }}px; width: auto;">
+                    <a href="/" class="flex items-center gap-3">
+                        <img src="{{ $siteSettings->logo_url }}" alt="{{ $siteSettings->site_name }} Logo" style="height: {{ $siteSettings->logo_height ?? 20 }}px; width: auto;">
+                        <span class="font-bold text-xl text-wood-6 00 tracking-tight">{{ $siteSettings->site_name }}</span>
                     </a>
                 </div>
                 
@@ -61,13 +65,34 @@
                     
                     <!-- Mobile Menu Button -->
                     <div class="flex items-center md:hidden">
-                        <button type="button" class="text-gray-500 hover:text-gray-600">
+                        <button @click="mobileMenuOpen = !mobileMenuOpen" type="button" class="text-gray-500 hover:text-wood-600 transition-colors p-2 rounded-lg hover:bg-gray-50">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                <path x-show="!mobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                <path x-show="mobileMenuOpen" x-cloak stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Container -->
+        <div x-show="mobileMenuOpen" 
+             x-cloak
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-2"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-transition:leave="transition ease-in duration-150"
+             x-transition:leave-start="opacity-100 translate-y-0"
+             x-transition:leave-end="opacity-0 -translate-y-2"
+             class="md:hidden border-t border-gray-50 bg-white">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="/" class="block px-4 py-3 rounded-xl text-base font-medium {{ request()->is('/') ? 'bg-wood-50 text-wood-600' : 'text-gray-600 hover:bg-gray-50' }}">Home</a>
+                <a href="/katalog" class="block px-4 py-3 rounded-xl text-base font-medium {{ request()->is('katalog*') ? 'bg-wood-50 text-wood-600' : 'text-gray-600 hover:bg-gray-50' }}">Katalog</a>
+                <a href="/portofolio" class="block px-4 py-3 rounded-xl text-base font-medium {{ request()->is('portofolio*') ? 'bg-wood-50 text-wood-600' : 'text-gray-600 hover:bg-gray-50' }}">Portofolio</a>
+                <a href="/tentang" class="block px-4 py-3 rounded-xl text-base font-medium {{ request()->is('tentang*') ? 'bg-wood-50 text-wood-600' : 'text-gray-600 hover:bg-gray-50' }}">Tentang Kami</a>
+                <a href="/artikel" class="block px-4 py-3 rounded-xl text-base font-medium {{ request()->is('artikel*') ? 'bg-wood-50 text-wood-600' : 'text-gray-600 hover:bg-gray-50' }}">Artikel</a>
+                <a href="/pembayaran" class="block px-4 py-3 rounded-xl text-base font-medium {{ request()->is('pembayaran*') ? 'bg-wood-50 text-wood-600' : 'text-gray-600 hover:bg-gray-50' }}">Metode Pembayaran</a>
             </div>
         </div>
     </nav>
@@ -82,9 +107,26 @@
             <div class="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-gray-800 pb-12">
                 <div class="col-span-1 md:col-span-1">
                     <h3 class="text-2xl font-bold text-wood-500 mb-6">{{ $siteSettings->site_name }}</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Penyedia kusen, pintu, jendela, & roster berkualitas tinggi dengan material terbaik dan desain modern untuk hunian impian Anda.
                     </p>
+                    <div class="flex items-center space-x-4">
+                        @if(isset($siteSettings->marketplace_links['shopee']))
+                        <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-sm">
+                            <img src="https://img.icons8.com/color/480/shopee.png" class="w-8 h-8 object-contain" alt="Shopee">
+                        </a>
+                        @endif
+                        @if(isset($siteSettings->marketplace_links['tokopedia']))
+                        <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-sm">
+                            <img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png" class="w-8 h-8 object-contain" alt="Tokopedia">
+                        </a>
+                        @endif
+                        @if(isset($siteSettings->marketplace_links['tiktok']))
+                        <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" class="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-sm">
+                            <img src="https://img.icons8.com/color/480/tiktok--v1.png" class="w-8 h-8 object-contain" alt="TikTok Shop">
+                        </a>
+                        @endif
+                    </div>
                 </div>
                 
                 <div>

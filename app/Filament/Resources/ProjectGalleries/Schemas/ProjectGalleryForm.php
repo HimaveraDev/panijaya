@@ -26,7 +26,6 @@ class ProjectGalleryForm
                     ->image()
                     ->disk('public')
                     ->directory('projects')
-                    ->visibility('public')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(2048)
                     ->columnSpanFull(),

@@ -30,7 +30,6 @@ class ArticleForm
                     ->image()
                     ->disk('public')
                     ->directory('articles')
-                    ->visibility('public')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                     ->maxSize(2048),
                 DateTimePicker::make('published_at')

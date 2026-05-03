@@ -46,7 +46,6 @@ class TestimonialForm
                                     ->image()
                                     ->disk('public')
                                     ->directory('testimonials')
-                                    ->visibility('public')
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                                     ->maxSize(2048),
                                 Toggle::make('is_active')

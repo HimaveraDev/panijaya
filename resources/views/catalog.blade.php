@@ -27,19 +27,7 @@
                 <!-- Sidebar Filters -->
                 <aside class="w-full lg:w-1/4">
                     <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 sticky top-28">
-                        <h3 class="text-lg font-bold mb-6">Filter Kategori</h3>
-                        <div class="space-y-3">
-                            <a href="/katalog" class="block px-4 py-2 rounded-lg {{ !request('kategori') ? 'bg-wood-600 text-white font-bold' : 'text-gray-600 hover:bg-gray-50' }}">
-                                Semua Produk
-                            </a>
-                            @foreach($categories as $category)
-                            <a href="/katalog?kategori={{ $category->slug }}" class="block px-4 py-2 rounded-lg {{ request('kategori') == $category->slug ? 'bg-wood-600 text-white font-bold' : 'text-gray-600 hover:bg-gray-50' }}">
-                                {{ $category->name }}
-                            </a>
-                            @endforeach
-                        </div>
-
-                        <div class="mt-12 pt-8 border-t border-gray-100">
+                        <div class="mb-10 pb-8 border-b border-gray-100">
                             <h3 class="text-lg font-bold mb-6">Cari Produk</h3>
                             <form action="/katalog" method="GET">
                                 @if(request('kategori'))
@@ -52,6 +40,18 @@
                                     </button>
                                 </div>
                             </form>
+                        </div>
+
+                        <h3 class="text-lg font-bold mb-6">Filter Kategori</h3>
+                        <div class="space-y-3">
+                            <a href="/katalog" class="block px-4 py-2 rounded-lg {{ !request('kategori') ? 'bg-wood-600 text-white font-bold' : 'text-gray-600 hover:bg-gray-50' }}">
+                                Semua Produk
+                            </a>
+                            @foreach($categories as $category)
+                            <a href="/katalog?kategori={{ $category->slug }}" class="block px-4 py-2 rounded-lg {{ request('kategori') == $category->slug ? 'bg-wood-600 text-white font-bold' : 'text-gray-600 hover:bg-gray-50' }}">
+                                {{ $category->name }}
+                            </a>
+                            @endforeach
                         </div>
                     </div>
                 </aside>
@@ -299,7 +299,6 @@
         }));   // end Alpine.data callback
     });        // end alpine:init listener
 </script>
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 @endpush
 
 

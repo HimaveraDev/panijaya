@@ -55,7 +55,7 @@ class ManageSiteSettings extends Page implements HasForms
                                     ->image()
                                     ->disk('public')
                                     ->directory('site')
-                                    ->visibility('public')
+                                    
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp', 'image/svg+xml'])
                                     ->maxSize(1024),
                                 TextInput::make('logo_height')
@@ -75,7 +75,7 @@ class ManageSiteSettings extends Page implements HasForms
                             ->image()
                             ->disk('public')
                             ->directory('site')
-                            ->visibility('public')
+                            
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->maxSize(3072),
                         TextInput::make('hero_title')
@@ -103,7 +103,9 @@ class ManageSiteSettings extends Page implements HasForms
                             ->label('Alamat Lengkap')
                             ->rows(2),
                         TextInput::make('google_maps_url')
-                            ->label('URL Embed Google Maps (Src dari Iframe)'),
+                            ->label('URL Embed Google Maps (Src dari Iframe)')
+                            ->placeholder('https://www.google.com/maps/embed?pb=...')
+                            ->helperText('Buka Google Maps > Share > Embed a map > Copy bagian "src" saja. Atau paste seluruh kode <iframe>, sistem akan mencoba mengekstraknya.'),
                     ]),
 
                 Section::make('Keunggulan (Point of Sale)')
@@ -117,7 +119,7 @@ class ManageSiteSettings extends Page implements HasForms
                             ->image()
                             ->disk('public')
                             ->directory('site')
-                            ->visibility('public')
+                            
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->maxSize(2048),
                         
@@ -167,7 +169,7 @@ class ManageSiteSettings extends Page implements HasForms
                             ->image()
                             ->disk('public')
                             ->directory('site')
-                            ->visibility('public')
+                            
                             ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
                             ->maxSize(2048),
                         RichEditor::make('about_history')

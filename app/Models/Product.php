@@ -18,11 +18,13 @@ class Product extends Model
         'shopee_url',
         'tokopedia_url',
         'tiktok_url',
+        'gallery',
     ];
 
     protected $casts = [
         'specifications' => 'array',
         'is_featured' => 'boolean',
+        'gallery' => 'array',
     ];
 
     public function getImageUrlAttribute()
@@ -36,6 +38,21 @@ class Product extends Model
         }
 
         return asset('storage/' . $this->image);
+    }
+
+    public function getGalleryUrlsAttribute()
+    {
+        $urls = [];
+        if ($this->gallery && is_array($this->gallery)) {
+            foreach ($this->gallery as $img) {
+                if (str_starts_with($img, 'http')) {
+                    $urls[] = $img;
+                } else {
+                    $urls[] = asset('storage/' . $img);
+                }
+            }
+        }
+        return $urls;
     }
 
     public function category()

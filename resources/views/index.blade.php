@@ -35,8 +35,8 @@
             <div class="flex flex-wrap justify-center gap-6">
                 @if(isset($siteSettings->marketplace_links['shopee']))
                 <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="flex items-center px-8 py-4 bg-white border-2 border-orange-100 hover:border-orange-500 rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 group">
-                    <div class="w-10 h-10 bg-orange-100 text-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:bg-orange-500 group-hover:text-white transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <div class="w-14 h-14 bg-orange-50 text-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:bg-orange-100 transition-colors">
+                        <img src="https://img.icons8.com/color/480/shopee.png" class="w-10 h-10 object-contain" alt="Shopee">
                     </div>
                     <div>
                         <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Official Store</p>
@@ -47,8 +47,8 @@
                 
                 @if(isset($siteSettings->marketplace_links['tokopedia']))
                 <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="flex items-center px-8 py-4 bg-white border-2 border-green-100 hover:border-green-500 rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 group">
-                    <div class="w-10 h-10 bg-green-100 text-green-500 rounded-full flex items-center justify-center mr-4 group-hover:bg-green-500 group-hover:text-white transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <div class="w-14 h-14 bg-green-50 text-green-500 rounded-full flex items-center justify-center mr-4 group-hover:bg-green-100 transition-colors">
+                        <img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png" class="w-10 h-10 object-contain" alt="Tokopedia">
                     </div>
                     <div>
                         <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Official Store</p>
@@ -59,8 +59,8 @@
 
                 @if(isset($siteSettings->marketplace_links['tiktok']))
                 <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="flex items-center px-8 py-4 bg-white border-2 border-gray-200 hover:border-black rounded-xl shadow-sm hover:shadow-lg transition-all transform hover:-translate-y-1 group">
-                    <div class="w-10 h-10 bg-gray-100 text-gray-900 rounded-full flex items-center justify-center mr-4 group-hover:bg-black group-hover:text-white transition-colors">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <div class="w-14 h-14 bg-gray-50 text-gray-900 rounded-full flex items-center justify-center mr-4 group-hover:bg-gray-200 transition-colors">
+                        <img src="https://img.icons8.com/color/480/tiktok--v1.png" class="w-10 h-10 object-contain" alt="TikTok Shop">
                     </div>
                     <div>
                         <p class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-1">Official Store</p>
@@ -96,9 +96,9 @@
                         @foreach($testimonials as $index => $testimonial)
                         <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex-shrink-0 px-2">
                             <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden h-full flex flex-col hover:shadow-md transition-all duration-300">
-                                <!-- Photo Landscape (Compact) -->
-                                <div class="w-full aspect-[16/9] bg-gray-50">
-                                    <img src="{{ $testimonial->image_url }}" class="w-full h-full object-cover" alt="{{ $testimonial->name }}">
+                                <!-- Photo Landscape (Flexible) -->
+                                <div class="w-full h-48 bg-gray-50 p-2">
+                                    <img src="{{ $testimonial->image_url }}" class="w-full h-full object-contain rounded-lg" alt="{{ $testimonial->name }}">
                                 </div>
                                 
                                 <!-- Content Below (Very compact) -->

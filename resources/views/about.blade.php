@@ -12,7 +12,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col lg:flex-row gap-16 items-center border-b border-gray-100 pb-24">
                 <div class="w-full lg:w-1/2">
-                    <img src="{{ $siteSettings->about_image_url }}" class="rounded-3xl shadow-2xl" alt="Pani Jaya Workshop">
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-wood-600/20 rounded-[2.5rem] blur-2xl group-hover:bg-wood-600/30 transition-all duration-700"></div>
+                        <img src="{{ $siteSettings->about_image_url }}" class="relative rounded-3xl shadow-2xl transition-all duration-700 group-hover:scale-[1.02]" alt="Pani Jaya Workshop">
+                    </div>
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold mb-6 text-gray-900">{{ $siteSettings->about_history_title ?? 'Sejarah & Visi Pani Jaya' }}</h2>
@@ -44,34 +47,47 @@
     </section>
 
     @if($siteSettings->hasMarketplace())
-    <section class="py-16 bg-gray-50 border-y border-gray-100 text-center">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h3 class="text-lg font-bold text-gray-900 mb-6">Kunjungi Toko Resmi Kami di Marketplace</h3>
-            <div class="flex justify-center items-center gap-8 flex-wrap">
-                @if(isset($siteSettings->marketplace_links['shopee']))
-                <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="text-gray-400 hover:text-orange-500 transition-colors flex flex-col items-center gap-2 group">
-                    <div class="p-3 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-900 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+                <!-- Decorative Elements -->
+                <div class="absolute -top-24 -right-24 w-80 h-80 bg-wood-600/10 rounded-full blur-[100px]"></div>
+                <div class="absolute -bottom-24 -left-24 w-80 h-80 bg-wood-600/10 rounded-full blur-[100px]"></div>
+                
+                <div class="relative z-10">
+                    <span class="inline-block px-4 py-1.5 bg-wood-600/20 text-wood-400 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-6 border border-wood-600/30">Official Stores</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Kunjungi Toko Resmi Kami</h2>
+                    <p class="text-gray-400 mb-16 max-w-2xl mx-auto text-lg leading-relaxed">Dapatkan jaminan kualitas material terbaik dan layanan purna jual resmi dengan bertransaksi melalui platform marketplace terpercaya pilihan Anda.</p>
+                    
+                    <div class="flex justify-center items-center gap-8 md:gap-16 flex-wrap">
+                        @if(isset($siteSettings->marketplace_links['shopee']))
+                        <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="group flex flex-col items-center gap-5">
+                            <div class="w-24 h-24 md:w-32 md:h-32 bg-white/5 border border-white/10 rounded-[2.5rem] flex items-center justify-center transition-all duration-500 group-hover:bg-orange-500 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-orange-500/20 shadow-xl group-hover:border-transparent">
+                                <img src="https://img.icons8.com/color/480/shopee.png" class="w-14 h-14 md:w-20 md:h-20 object-contain" alt="Shopee">
+                            </div>
+                            <span class="text-white font-bold tracking-wide group-hover:text-orange-400 transition-colors text-lg">Shopee</span>
+                        </a>
+                        @endif
+
+                        @if(isset($siteSettings->marketplace_links['tokopedia']))
+                        <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="group flex flex-col items-center gap-5">
+                            <div class="w-24 h-24 md:w-32 md:h-32 bg-white/5 border border-white/10 rounded-[2.5rem] flex items-center justify-center transition-all duration-500 group-hover:bg-green-500 group-hover:scale-110 group-hover:-rotate-6 group-hover:shadow-green-500/20 shadow-xl group-hover:border-transparent">
+                                <img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png" class="w-14 h-14 md:w-20 md:h-20 object-contain" alt="Tokopedia">
+                            </div>
+                            <span class="text-white font-bold tracking-wide group-hover:text-green-400 transition-colors text-lg">Tokopedia</span>
+                        </a>
+                        @endif
+
+                        @if(isset($siteSettings->marketplace_links['tiktok']))
+                        <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="group flex flex-col items-center gap-5">
+                            <div class="w-24 h-24 md:w-32 md:h-32 bg-white/5 border border-white/10 rounded-[2.5rem] flex items-center justify-center transition-all duration-500 group-hover:bg-white group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-white/20 shadow-xl group-hover:border-transparent">
+                                <img src="https://img.icons8.com/color/480/tiktok--v1.png" class="w-14 h-14 md:w-20 md:h-20 object-contain" alt="TikTok Shop">
+                            </div>
+                            <span class="text-white font-bold tracking-wide group-hover:text-gray-300 transition-colors text-lg">TikTok Shop</span>
+                        </a>
+                        @endif
                     </div>
-                    <span class="text-sm font-semibold">Shopee</span>
-                </a>
-                @endif
-                @if(isset($siteSettings->marketplace_links['tokopedia']))
-                <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="text-gray-400 hover:text-green-500 transition-colors flex flex-col items-center gap-2 group">
-                    <div class="p-3 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                    </div>
-                    <span class="text-sm font-semibold">Tokopedia</span>
-                </a>
-                @endif
-                @if(isset($siteSettings->marketplace_links['tiktok']))
-                <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="text-gray-400 hover:text-black transition-colors flex flex-col items-center gap-2 group">
-                    <div class="p-3 bg-white rounded-full shadow-sm group-hover:shadow-md transition-all">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                    </div>
-                    <span class="text-sm font-semibold">TikTok Shop</span>
-                </a>
-                @endif
+                </div>
             </div>
         </div>
     </section>
@@ -81,20 +97,32 @@
     <section class="py-24 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4 tracking-tight">Lokasi Kami</h2>
-                <div class="w-20 h-1 bg-wood-600 mx-auto mb-6"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Kunjungi workshop kami untuk melihat langsung kualitas material dan berkonsultasi mengenai kebutuhan hunian Anda.</p>
+                <span class="inline-block px-4 py-1.5 bg-wood-600/20 text-wood-600 text-xs font-bold uppercase tracking-[0.2em] rounded-full mb-4">Workshop & Showroom</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">Kunjungi Workshop Kami</h2>
+                <div class="w-20 h-1.5 bg-wood-600 mx-auto mb-8 rounded-full"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Kami mengundang Anda untuk melihat langsung proses produksi dan kualitas material premium yang kami gunakan.</p>
             </div>
             
-            <div class="w-full rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-white" style="height: 500px; min-height: 500px;">
+            <div class="w-full rounded-[2.5rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-[12px] border-white bg-white relative group" style="height: 600px; min-height: 600px;">
+                @php
+                    $mapsUrl = $siteSettings->google_maps_url;
+                    // Extract src if user pasted entire iframe tag
+                    if ($mapsUrl && str_contains($mapsUrl, '<iframe')) {
+                        preg_match('/src="([^"]+)"/', $mapsUrl, $match);
+                        $mapsUrl = $match[1] ?? $mapsUrl;
+                    }
+                    // Fallback to default if empty or not set
+                    $mapsUrl = $mapsUrl ?: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15864.237701168536!2d106.983!3d-6.236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c2534f315a9%3A0xc4864c297864f1e9!2sJl.%20Jend.%20Sudirman%2C%20Bekasi%2C%20Kota%20Bks%2C%20Jawa%20Barat!5e0!3m2!1id!2sid!4v1713175000000!5m2!1sid!2sid';
+                @endphp
                 <iframe 
-                    src="{{ $siteSettings->google_maps_url ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15864.237701168536!2d106.983!3d-6.236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e698c2534f315a9%3A0xc4864c297864f1e9!2sJl.%20Jend.%20Sudirman%2C%20Bekasi%2C%20Kota%20Bks%2C%20Jawa%20Barat!5e0!3m2!1id!2sid!4v1713175000000!5m2!1sid!2sid' }}" 
+                    src="{{ $mapsUrl }}" 
                     width="100%" 
                     height="100%" 
                     style="border:0;" 
                     allowfullscreen="" 
                     loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="grayscale-[0.2] contrast-[1.1] transition-all duration-700 group-hover:grayscale-0">
                 </iframe>
             </div>
             

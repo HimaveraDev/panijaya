@@ -29,7 +29,6 @@ class InquiryController extends Controller
         // Prepare info for WhatsApp
         $product = Product::findOrFail($validated['product_id']);
         
-        // Retrieve a single instance of SiteSetting instead of a collection
         $siteSettings = SiteSetting::first();
         $waNumber = $siteSettings->whatsapp_number;
         $waNumberNormalized = preg_replace('/[^0-9]/', '', $waNumber);
@@ -38,7 +37,11 @@ class InquiryController extends Controller
             $waNumberNormalized = '62' . substr($waNumberNormalized, 1);
         }
 
-        $message = "Halo Pani Jaya, saya *" . $validated['name'] . "* dari *" . $validated['location'] . "*. \n\nSaya ingin bertanya tentang produk: *" . $product->name . "*.\n\nPesan: " . ($validated['message'] ?? '-');
+        // Use the message passed from frontend (which includes options and validated price)
+        $frontendMessage = $validated['message'] ?? '';
+        
+        $message = "Halo Pani Jaya, saya *" . $validated['name'] . "* dari *" . $validated['location'] . "*. \n\n" . $frontendMessage;
+        
         $waLink = "https://wa.me/" . $waNumberNormalized . "?text=" . urlencode($message);
 
         return redirect()->away($waLink);
