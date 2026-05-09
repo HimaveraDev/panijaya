@@ -14,46 +14,54 @@
             </nav>
 
             <div class="flex flex-col lg:flex-row gap-16">
-                <!-- Product Image -->
-                <div class="w-full lg:w-1/2" x-data="{ activeImage: '{{ $product->image_url }}', prevImage: '{{ $product->image_url }}', animating: false }">
-                    <div class="aspect-square rounded-3xl overflow-hidden bg-gray-100 shadow-inner mb-4 relative">
-                        <!-- Background Image (Previous) -->
-                        <img :src="prevImage" class="absolute inset-0 w-full h-full object-cover" alt="">
-                        
-                        <!-- Foreground Image (Active with Fade) -->
-                        <img :src="activeImage" 
-                             @load="animating = false; setTimeout(() => prevImage = activeImage, 500)"
-                             :class="animating ? 'opacity-0' : 'opacity-100'"
-                             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out z-10" 
-                             alt="{{ $product->name }}">
-                        
-                        <!-- Subtle Loader overlay -->
-                        <div x-show="animating" class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-                            <div class="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        </div>
-                    </div>
-                    
-                    @if(count($product->gallery_urls ?? []) > 0)
-                    <div class="flex gap-4 overflow-x-auto p-1 pb-2 snap-x scrollbar-hide">
-                        <button @click="if(activeImage !== '{{ $product->image_url }}') { animating = true; activeImage = '{{ $product->image_url }}' }" 
-                                :class="{'ring-2 ring-wood-600 ring-offset-2': activeImage === '{{ $product->image_url }}', 'opacity-70 hover:opacity-100': activeImage !== '{{ $product->image_url }}'}"
-                                class="w-20 h-20 shrink-0 rounded-xl bg-gray-100 snap-start transition-all relative">
-                            <div class="w-full h-full rounded-xl overflow-hidden">
+                <!-- Product Image (Swiper Gallery) -->
+                <div class="w-full lg:w-1/2">
+                    <!-- Main Swiper -->
+                    <div class="swiper mainSwiper rounded-3xl overflow-hidden bg-gray-100 shadow-inner mb-4 aspect-square">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide cursor-zoom-in">
                                 <img src="{{ $product->image_url }}" class="w-full h-full object-cover" alt="{{ $product->name }}">
                             </div>
-                        </button>
-                        @foreach($product->gallery_urls as $galleryImage)
-                        <button @click="if(activeImage !== '{{ $galleryImage }}') { animating = true; activeImage = '{{ $galleryImage }}' }" 
-                                :class="{'ring-2 ring-wood-600 ring-offset-2': activeImage === '{{ $galleryImage }}', 'opacity-70 hover:opacity-100': activeImage !== '{{ $galleryImage }}'}"
-                                class="w-20 h-20 shrink-0 rounded-xl bg-gray-100 snap-start transition-all relative">
-                            <div class="w-full h-full rounded-xl overflow-hidden">
+                            @foreach($product->gallery_urls ?? [] as $galleryImage)
+                            <div class="swiper-slide cursor-zoom-in">
                                 <img src="{{ $galleryImage }}" class="w-full h-full object-cover" alt="{{ $product->name }} Gallery">
                             </div>
-                        </button>
-                        @endforeach
+                            @endforeach
+                        </div>
+                        {{-- Navigation Arrows --}}
+                        <div class="swiper-button-next !text-wood-600 !w-10 !h-10 bg-white/80 backdrop-blur-sm rounded-full after:!text-sm shadow-sm hidden md:flex"></div>
+                        <div class="swiper-button-prev !text-wood-600 !w-10 !h-10 bg-white/80 backdrop-blur-sm rounded-full after:!text-sm shadow-sm hidden md:flex"></div>
                     </div>
-                    @endif
+                    
+                    <!-- Thumbnails Swiper -->
+                    <div class="swiper thumbSwiper mt-4 h-20">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide cursor-pointer opacity-50 transition-opacity !w-20 !h-20 rounded-xl overflow-hidden ring-wood-600 ring-offset-2">
+                                <img src="{{ $product->image_url }}" class="w-full h-full object-cover" alt="{{ $product->name }} Thumb">
+                            </div>
+                            @foreach($product->gallery_urls ?? [] as $galleryImage)
+                            <div class="swiper-slide cursor-pointer opacity-50 transition-opacity !w-20 !h-20 rounded-xl overflow-hidden ring-wood-600 ring-offset-2">
+                                <img src="{{ $galleryImage }}" class="w-full h-full object-cover" alt="{{ $product->name }} Gallery Thumb">
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
+
+                {{-- CSS for Swiper --}}
+                @push('styles')
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+                <style>
+                    .thumbSwiper .swiper-slide-thumb-active {
+                        opacity: 1;
+                        ring-width: 2px;
+                        border: 2px solid var(--color-wood-600);
+                    }
+                    .mainSwiper {
+                        --swiper-navigation-size: 20px;
+                    }
+                </style>
+                @endpush
 
                 <!-- Product Info -->
                 <div class="w-full lg:w-1/2">
@@ -436,7 +444,38 @@
     </script>
 
     @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Initialize Thumbnails Slider
+        const thumbSwiper = new Swiper(".thumbSwiper", {
+            spaceBetween: 12,
+            slidesPerView: 5,
+            freeMode: true,
+            watchSlidesProgress: true,
+            breakpoints: {
+                320: { slidesPerView: 4 },
+                640: { slidesPerView: 5 }
+            }
+        });
+
+        // Initialize Main Slider
+        const mainSwiper = new Swiper(".mainSwiper", {
+            spaceBetween: 10,
+            effect: "fade", // Smooth Crossfade
+            fadeEffect: {
+                crossFade: true
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            thumbs: {
+                swiper: thumbSwiper,
+            },
+        });
+    });
+
     document.addEventListener('alpine:init', () => {
         Alpine.data('productCalculator', () => ({
             basePrice: window.productData.basePrice || 0,

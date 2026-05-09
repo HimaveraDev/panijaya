@@ -12,6 +12,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Repeater;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
 use Filament\Actions\Action;
@@ -189,6 +190,52 @@ class ManageSiteSettings extends Page implements HasForms
                             ->toolbarButtons([
                                 'bold', 'bulletList', 'italic', 'link', 'orderedList', 'redo', 'undo',
                             ])
+                            ->columnSpanFull(),
+                    ]),
+
+
+                Section::make('Produk & Layanan Kami')
+                    ->description('Kelola daftar layanan yang ditawarkan beserta gambar ilustrasi dan lencana pengalaman.')
+                    ->components([
+                        FileUpload::make('services_image')
+                            ->label('Gambar Ilustrasi (Arch Image)')
+                            ->image()
+                            ->disk('public')
+                            ->directory('site')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->maxSize(3072),
+                        Grid::make(2)
+                            ->components([
+                                TextInput::make('services_badge_number')
+                                    ->label('Angka Lencana (Badge Number)')
+                                    ->default('16+'),
+                                TextInput::make('services_badge_text')
+                                    ->label('Teks Lencana (Badge Text)')
+                                    ->default('Tahun Pengalaman'),
+                            ]),
+                        TextInput::make('services_title')
+                            ->label('Judul Utama')
+                            ->default('Produk & Layanan Kami')
+                            ->columnSpanFull(),
+                        Repeater::make('services_list')
+                            ->label('Daftar Layanan')
+                            ->schema([
+                                TextInput::make('title')
+                                    ->label('Nama Layanan')
+                                    ->required(),
+                                Textarea::make('description')
+                                    ->label('Deskripsi Singkat')
+                                    ->rows(2)
+                                    ->required(),
+                                FileUpload::make('image')
+                                    ->label('Icon/Gambar Layanan (Opsional)')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('services')
+                                    ->maxSize(1024),
+                            ])
+                            ->grid(2)
+                            ->defaultItems(6)
                             ->columnSpanFull(),
                     ]),
 

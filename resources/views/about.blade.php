@@ -10,7 +10,7 @@
 
     <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row gap-16 items-center border-b border-gray-100 pb-24">
+            <div class="flex flex-col lg:flex-row gap-16 items-center pb-8">
                 <div class="w-full lg:w-1/2">
                     <div class="relative group">
                         <div class="absolute -inset-4 bg-wood-600/20 rounded-[2.5rem] blur-2xl group-hover:bg-wood-600/30 transition-all duration-700"></div>
@@ -19,27 +19,87 @@
                 </div>
                 <div class="w-full lg:w-1/2">
                     <h2 class="text-3xl font-bold mb-6 text-gray-900">{{ $siteSettings->about_history_title ?? 'Sejarah & Visi Pani Jaya' }}</h2>
-                    <div class="prose prose-lg text-gray-600">
+                    <div class="about-prose text-gray-600 text-base max-w-none">
                         @if($siteSettings->about_history)
                             {!! $siteSettings->about_history !!}
                         @endif
 
                         @if($siteSettings->about_vision)
-                            <h3 class="text-wood-600 font-bold mt-8 italic">Visi Kami</h3>
+                            <h3 class="text-wood-600 font-bold mt-3 mb-1 italic text-lg">Visi Kami</h3>
                             {!! $siteSettings->about_vision !!}
                         @endif
 
                         @if($siteSettings->about_mission)
-                            <h3 class="text-wood-600 font-bold mt-8 italic">Misi Kami</h3>
+                            <h3 class="text-wood-600 font-bold mt-3 mb-1 italic text-lg">Misi Kami</h3>
                             {!! $siteSettings->about_mission !!}
                         @endif
 
                         @if(!$siteSettings->about_history && !$siteSettings->about_vision && !$siteSettings->about_mission)
                             <p>Berawal dari sebuah workshop kecil di Kota Bekasi, Pani Jaya telah tumbuh menjadi salah satu penyedia kusen, pintu, dan jendela terpercaya untuk ribuan hunian dan proyek komersial.</p>
                             <p>Kami percaya bahwa setiap detail dalam konstruksi rumah memiliki nilai seni dan fungsionalitas yang tinggi. Itulah mengapa kami berkomitmen untuk hanya menggunakan material premium dan tenaga ahli yang berpengalaman.</p>
-                            <h3 class="text-wood-600 font-bold mt-8 italic">Visi Kami</h3>
+                            <h3 class="text-wood-600 font-bold mt-3 mb-1 italic text-lg">Visi Kami</h3>
                             <p>Menjadi mitra utama dalam menghadirkan hunian yang estetis, kokoh, dan modern melalui produk-produk berkualitas tinggi.</p>
                         @endif
+                    </div>
+                </div>
+            </div>
+
+            <!-- New: Services Section -->
+            <div class="pt-16 mt-8">
+                <div class="flex flex-col lg:flex-row gap-16 items-center">
+                    <!-- Left Side: Arch Image & Badge -->
+                    <div class="w-full lg:w-1/2 relative flex justify-center">
+                        <div class="relative w-full md:max-w-[600px]">
+                            <!-- Image Wrapper -->
+                            <div class="w-full h-auto rounded-2xl overflow-hidden shadow-2xl relative z-0 bg-white border border-gray-100">
+                                <img src="{{ $siteSettings->services_image_url }}" class="w-full h-auto object-contain" alt="Layanan Pani Jaya">
+                            </div>
+                            
+                            <!-- Floating Badge -->
+                            <div class="absolute -bottom-4 -left-4 md:-left-6 z-10">
+                                <div class="relative bg-[#ea580c] text-white p-3 px-5 shadow-xl text-center min-w-[110px] md:min-w-[120px]">
+                                    @php
+                                        $badgeNumber = $siteSettings->services_badge_number ?: '16+';
+                                        $badgeNumberHtml = preg_replace('/(\D+)$/', '<sup class="text-lg md:text-xl">$1</sup>', $badgeNumber);
+                                    @endphp
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-0.5">{!! $badgeNumberHtml !!}</h3>
+                                    <p class="text-[10px] md:text-xs font-medium tracking-wide">{{ $siteSettings->services_badge_text ?: 'Tahun Pengalaman' }}</p>
+                                    <!-- Offset Shadow Block -->
+                                    <div class="absolute -z-10 -bottom-2 -left-2 w-full h-full bg-[#1e293b]"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Side: Services Grid -->
+                    <div class="w-full lg:w-1/2 lg:pl-10">
+                        <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mb-12 tracking-tight">{{ $siteSettings->services_title ?? 'Produk & Layanan Kami' }}</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-10">
+                            @php
+                                $defaultIcons = [
+                                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 12v.01"/><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M4 21h16"/></svg>', // Pintu/Kusen
+                                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><path d="M4 12h16"/><path d="M12 4v16"/></svg>', // Jendela Minimalis
+                                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 15h18"/><path d="M15 3v18"/></svg>', // Kusen Aluminium
+                                    '<svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M9 12h12"/></svg>' // Partisi Kaca
+                                ];
+                            @endphp
+                            @foreach($siteSettings->services_list ?? [] as $index => $service)
+                            <div class="flex items-start gap-5">
+                                <div class="text-[#ea580c] shrink-0 mt-1">
+                                    @if(!empty($service['image']))
+                                        <img src="{{ asset('storage/' . $service['image']) }}" class="w-10 h-10 object-contain" alt="{{ $service['title'] ?? '' }}">
+                                    @else
+                                        {!! $defaultIcons[$index % count($defaultIcons)] !!}
+                                    @endif
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-gray-900 mb-2">{{ $service['title'] ?? '' }}</h4>
+                                    <p class="text-gray-500 text-sm leading-relaxed">{{ $service['description'] ?? '' }}</p>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>

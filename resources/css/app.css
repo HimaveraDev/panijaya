@@ -90,3 +90,32 @@
     text-decoration: underline;
     font-weight: 500;
 }
+
+/* ========================================= */
+/* ABOUT PROSE - Custom tight spacing        */
+/* ========================================= */
+.about-prose p {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.7;
+}
+.about-prose p:last-child {
+    margin-bottom: 0;
+}
+.about-prose ul, .about-prose ol {
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+}
+.about-prose li {
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    line-height: 1.6;
+}
+.about-prose h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+}
+.about-prose strong {
+    font-weight: 700;
+}
