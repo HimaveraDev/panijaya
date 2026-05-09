@@ -21,3 +21,29 @@
     --color-wood-900: #522c14;
     --color-wood-950: #2c1509;
 }
+
+/* ========================================= */
+/* KUSTOMISASI SWIPER JS                     */
+/* ========================================= */
+
+:root {
+    /* Mengambil warna langsung dari variabel Tailwind theme wood-600 */
+    --swiper-theme-color: var(--color-wood-600); 
+}
+
+/* Mempercantik bentuk dan warna Bullet (titik-titik) */
+.swiper-pagination-bullet {
+    @apply bg-gray-400 opacity-60 transition-all duration-300;
+}
+
+/* Tampilan Bullet saat aktif (lonjong dan warna wood) */
+.swiper-pagination-bullet-active {
+    @apply !bg-wood-600 !w-6 !rounded-lg opacity-100;
+}
+
+/* Memaksa bullet selalu berada di luar area card (ke bawah) */
+.swiper-pagination {
+    position: relative !important;
+    margin-top: 2rem !important; /* Memberi jarak aman antara card dan peluru */
+    bottom: 0 !important;
+}

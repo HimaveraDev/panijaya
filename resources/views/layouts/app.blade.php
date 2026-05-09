@@ -43,13 +43,15 @@
 <body class="bg-gray-50 text-gray-900 overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav x-data="{ mobileMenuOpen: false }" class="bg-white sticky top-0 z-50 border-b border-gray-100">
+    <nav x-data="{ mobileMenuOpen: false, isScrolled: false }" 
+         @scroll.window="isScrolled = (window.pageYOffset > 20) ? true : false"
+         class="sticky top-0 z-50 transition-all duration-300"
+         :class="isScrolled ? 'bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-white border-b border-gray-100'">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20 items-center">
                 <div class="flex-shrink-0 flex items-center">
                     <a href="/" class="flex items-center gap-3">
                         <img src="{{ $siteSettings->logo_url }}" alt="{{ $siteSettings->site_name }} Logo" style="height: {{ $siteSettings->logo_height ?? 20 }}px; width: auto;">
-                        <span class="font-bold text-xl text-wood-6 00 tracking-tight">{{ $siteSettings->site_name }}</span>
                     </a>
                 </div>
                 
@@ -147,25 +149,29 @@
                     </ul>
                 </div> -->
 
-                <div>
-                    <h4 class="text-lg font-semibold mb-6">Kontak</h4>
-                    <ul class="space-y-4 text-gray-400 text-sm">
-                        <li class="flex items-start">
-                            <span class="mr-2 italic text-wood-500">Alamat:</span>
-                            <span>{{ $siteSettings->address }}</span>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="mr-2 italic text-wood-500">WA:</span>
-                            <span>{{ $siteSettings->whatsapp_number }}</span>
-                        </li>
-                        <li class="flex items-center">
-                            <span class="mr-2 italic text-wood-500">Email:</span>
-                            <span>{{ $siteSettings->email }}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
+              <div>
+    <h4 class="text-lg font-semibold mb-6">Kontak</h4>
+    <ul class="space-y-4 text-gray-400 text-sm">
+        <!-- Gunakan flex agar label dan isi tetap sejajar -->
+        <li class="flex items-start">
+            <!-- Tambahkan w-16 (lebar tetap) dan flex-shrink-0 -->
+            <span class="w-16 flex-shrink-0 italic text-wood-500">Alamat</span>
+            <span class="mr-2">:</span>
+            <span>{{ $siteSettings->address }}</span>
+        </li>
+        <li class="flex items-center">
+            <span class="w-16 flex-shrink-0 italic text-wood-500">WA</span>
+            <span class="mr-2">:</span>
+            <span>{{ $siteSettings->whatsapp_number }}</span>
+        </li>
+        <li class="flex items-center">
+            <span class="w-16 flex-shrink-0 italic text-wood-500">Email</span>
+            <span class="mr-2">:</span>
+            <span>{{ $siteSettings->email }}</span>
+        </li>
+    </ul>
+</div>
+</div>            
             <div class="mt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-xs">
                 <p>&copy; {{ date('Y') }} {{ $siteSettings->footer_text ?? ($siteSettings->site_name . '. All rights reserved.') }}</p>
                 <div class="mt-4 md:mt-0 flex space-x-6">

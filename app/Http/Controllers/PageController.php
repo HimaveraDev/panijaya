@@ -12,7 +12,7 @@ class PageController extends Controller
 {
     public function home()
     {
-        $categories = Category::limit(4)->get();
+        $categories = Category::all();
         $featuredProducts = Product::with('category')->where('is_featured', true)->latest()->limit(8)->get();
         $latestArticles = Article::latest()->limit(3)->get();
         $testimonials = Testimonial::where('is_active', true)->latest()->get();

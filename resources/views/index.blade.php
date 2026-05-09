@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <!-- Hero Section -->
     <section class="relative h-[85vh] flex items-center overflow-hidden">
         <div class="absolute inset-0 z-0">
@@ -8,7 +9,8 @@
             <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Tambahan pt-20 (padding-top) ada di baris ini agar tulisan terdorong ke bawah garis navbar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
             <div class="max-w-2xl text-white">
                 <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
                     {!! $siteSettings->hero_title !!}
@@ -82,64 +84,31 @@
             </div>
 
             @if($testimonials->count() > 0)
-            <div x-data="{ 
-                activeSlide: 0, 
-                slides: {{ $testimonials->count() }},
-                perPage: window.innerWidth > 1024 ? 4 : (window.innerWidth > 768 ? 3 : (window.innerWidth > 640 ? 2 : 1)),
-                next() { if(this.activeSlide < this.slides - this.perPage) this.activeSlide++; else this.activeSlide = 0; },
-                prev() { if(this.activeSlide > 0) this.activeSlide--; else this.activeSlide = this.slides - this.perPage; }
-            }" x-init="window.addEventListener('resize', () => { perPage = window.innerWidth > 1024 ? 4 : (window.innerWidth > 768 ? 3 : (window.innerWidth > 640 ? 2 : 1)) })" class="relative">
-                
-                <!-- Carousel Track -->
-                <div class="overflow-hidden">
-                    <div class="flex transition-transform duration-500 ease-out" :style="'transform: translateX(-' + (activeSlide * (100 / perPage)) + '%)'">
-                        @foreach($testimonials as $index => $testimonial)
-                        <div class="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex-shrink-0 px-2">
-                            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden h-full flex flex-col hover:shadow-md transition-all duration-300">
-                                <!-- Photo Landscape (Flexible) -->
-                                <div class="w-full h-48 bg-gray-50 p-2">
-                                    <img src="{{ $testimonial->image_url }}" class="w-full h-full object-contain rounded-lg" alt="{{ $testimonial->name }}">
+            <div class="swiper testimonialSwiper pb-20 px-2">
+                <div class="swiper-wrapper flex"> 
+                    @foreach($testimonials as $testimonial)
+                    <div class="swiper-slide h-auto">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden h-full flex flex-col hover:shadow-md transition-all duration-300">
+                            <div class="w-full h-48 bg-gray-50 p-2">
+                                <img src="{{ $testimonial->image_url }}" class="w-full h-full object-contain rounded-lg" alt="{{ $testimonial->name }}">
+                            </div>
+                            <div class="p-4 flex flex-col flex-grow relative">
+                                <div class="flex text-yellow-400 mb-2">
+                                    @for($i = 0; $i < $testimonial->rating; $i++)
+                                        <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                                    @endfor
                                 </div>
-                                
-                                <!-- Content Below (Very compact) -->
-                                <div class="p-4 flex flex-col flex-grow relative">
-                                    <div class="flex text-yellow-400 mb-2">
-                                        @for($i = 0; $i < $testimonial->rating; $i++)
-                                            <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
-                                        @endfor
-                                    </div>
-                                    
-                                    <p class="text-gray-600 text-[0.8rem] leading-snug mb-3 flex-grow italic line-clamp-3">
-                                        {{ $testimonial->content }}
-                                    </p>
-                                    
-                                    <div class="mt-auto pt-3 border-t border-gray-50">
-                                        <h4 class="text-xs font-bold text-gray-900 truncate">{{ $testimonial->name }}</h4>
-                                        <p class="text-wood-600 text-[10px] font-medium truncate">{{ $testimonial->role ?? 'Pelanggan Setia' }}</p>
-                                    </div>
+                                <p class="text-gray-600 text-[0.8rem] leading-snug mb-3 flex-grow italic line-clamp-3">{{ $testimonial->content }}</p>
+                                <div class="mt-auto pt-3 border-t border-gray-50">
+                                    <h4 class="text-xs font-bold text-gray-900 truncate">{{ $testimonial->name }}</h4>
+                                    <p class="text-wood-600 text-[10px] font-medium truncate">{{ $testimonial->role ?? 'Pelanggan Setia' }}</p>
                                 </div>
                             </div>
                         </div>
-                        @endforeach
                     </div>
+                    @endforeach
                 </div>
-
-                <!-- Controls -->
-                <div class="flex justify-center mt-10 space-x-3" x-show="slides > perPage">
-                    <button @click="prev()" class="p-2.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-wood-600 hover:text-white transition-all shadow-sm">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                    </button>
-                    <div class="flex items-center space-x-1.5">
-                        <template x-for="i in Math.max(0, slides - perPage + 1)" :key="i">
-                            <button @click="activeSlide = i - 1" 
-                                    :class="activeSlide === i - 1 ? 'bg-wood-600 w-6' : 'bg-gray-300 w-1.5'"
-                                    class="h-1.5 rounded-full transition-all duration-300"></button>
-                        </template>
-                    </div>
-                    <button @click="next()" class="p-2.5 rounded-full bg-white border border-gray-200 text-gray-600 hover:bg-wood-600 hover:text-white transition-all shadow-sm">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                    </button>
-                </div>
+                <div class="swiper-pagination"></div>
             </div>
             @else
             <div class="text-center py-12 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
@@ -148,26 +117,34 @@
             @endif
         </div>
     </section>
-
+    
     <!-- Kategori Produk Section -->
-    <section class="py-24 bg-white">
+    <section class="py-24 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Pilihan Produk Utama</h2>
                 <div class="w-20 h-1.5 bg-wood-600 mx-auto rounded-full"></div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                @foreach($categories as $category)
-                <a href="/katalog?kategori={{ $category->slug }}" class="group relative h-80 rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2">
-                    <img src="{{ $category->image_url }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ $category->name }}">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <h3 class="text-xl font-bold text-white">{{ $category->name }}</h3>
-                        <p class="text-wood-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Lihat Koleksi &rarr;</p>
+            <div class="swiper categorySwiper pb-20 px-2">
+                <div class="swiper-wrapper flex"> 
+                    @foreach($categories as $category)
+                    <div class="swiper-slide">
+                        <a href="/katalog?kategori={{ $category->slug }}" class="group relative block w-full h-80 rounded-2xl overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                            <img src="{{ $category->image_url }}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="{{ $category->name }}">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6">
+                                <h3 class="text-xl font-bold text-white">{{ $category->name }}</h3>
+                                <p class="text-wood-400 text-sm opacity-0 group-hover:opacity-100 transition-opacity">Lihat Koleksi &rarr;</p>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                @endforeach
+                    @endforeach
+                </div>
+                
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next !text-wood-600 after:!text-2xl hidden md:flex"></div>
+                <div class="swiper-button-prev !text-wood-600 after:!text-2xl hidden md:flex"></div>
             </div>
         </div>
     </section>
@@ -298,4 +275,45 @@
             </div>
         </div>
     </section>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        
+        // 1. CAROUSEL KATEGORI
+        const categoryCount = {{ $categories->count() }};
+        var categorySwiper = new Swiper(".categorySwiper", {
+          slidesPerView: 1, 
+          slidesPerGroup: 1,
+          spaceBetween: 20,
+          speed: 1000, 
+          loop: categoryCount > 4, 
+          autoplay: { delay: 4000, disableOnInteraction: false },
+          pagination: { el: ".categorySwiper .swiper-pagination", clickable: true },
+          navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
+          breakpoints: {
+            640: { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 30 },
+          },
+        });
+
+        // 2. CAROUSEL TESTIMONI
+        const testimonialCount = {{ $testimonials->count() }};
+        var testimonialSwiper = new Swiper(".testimonialSwiper", {
+          slidesPerView: 1, 
+          slidesPerGroup: 1,
+          spaceBetween: 20,
+          speed: 1000, 
+          loop: testimonialCount > 4, 
+          autoplay: { delay: 5000, disableOnInteraction: false },
+          pagination: { el: ".testimonialSwiper .swiper-pagination", clickable: true },
+          breakpoints: {
+            640: { slidesPerView: 2, slidesPerGroup: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, slidesPerGroup: 3, spaceBetween: 20 },
+            1024: { slidesPerView: 4, slidesPerGroup: 4, spaceBetween: 30 },
+          },
+        });
+        
+      });
+    </script>
 @endsection
