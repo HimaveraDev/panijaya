@@ -8,7 +8,8 @@
             <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Tambahan pt-20 (padding-top) ada di baris ini agar tulisan terdorong ke bawah garis navbar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20">
             <div class="max-w-2xl text-white">
                 <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">
                     {!! $siteSettings->hero_title !!}
