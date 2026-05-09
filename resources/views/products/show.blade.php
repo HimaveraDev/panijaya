@@ -15,23 +15,40 @@
 
             <div class="flex flex-col lg:flex-row gap-16">
                 <!-- Product Image -->
-                <div class="w-full lg:w-1/2" x-data="{ activeImage: '{{ $product->image_url }}' }">
+                <div class="w-full lg:w-1/2" x-data="{ activeImage: '{{ $product->image_url }}', prevImage: '{{ $product->image_url }}', animating: false }">
                     <div class="aspect-square rounded-3xl overflow-hidden bg-gray-100 shadow-inner mb-4 relative">
-                        <img :src="activeImage" class="w-full h-full object-cover transition-all duration-300" alt="{{ $product->name }}">
+                        <!-- Background Image (Previous) -->
+                        <img :src="prevImage" class="absolute inset-0 w-full h-full object-cover" alt="">
+                        
+                        <!-- Foreground Image (Active with Fade) -->
+                        <img :src="activeImage" 
+                             @load="animating = false; setTimeout(() => prevImage = activeImage, 500)"
+                             :class="animating ? 'opacity-0' : 'opacity-100'"
+                             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-in-out z-10" 
+                             alt="{{ $product->name }}">
+                        
+                        <!-- Subtle Loader overlay -->
+                        <div x-show="animating" class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                            <div class="w-10 h-10 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                        </div>
                     </div>
                     
                     @if(count($product->gallery_urls ?? []) > 0)
-                    <div class="flex gap-4 overflow-x-auto pb-2 snap-x scrollbar-hide">
-                        <button @click="activeImage = '{{ $product->image_url }}'" 
+                    <div class="flex gap-4 overflow-x-auto p-1 pb-2 snap-x scrollbar-hide">
+                        <button @click="if(activeImage !== '{{ $product->image_url }}') { animating = true; activeImage = '{{ $product->image_url }}' }" 
                                 :class="{'ring-2 ring-wood-600 ring-offset-2': activeImage === '{{ $product->image_url }}', 'opacity-70 hover:opacity-100': activeImage !== '{{ $product->image_url }}'}"
-                                class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-gray-100 snap-start transition-all">
-                            <img src="{{ $product->image_url }}" class="w-full h-full object-cover" alt="{{ $product->name }}">
+                                class="w-20 h-20 shrink-0 rounded-xl bg-gray-100 snap-start transition-all relative">
+                            <div class="w-full h-full rounded-xl overflow-hidden">
+                                <img src="{{ $product->image_url }}" class="w-full h-full object-cover" alt="{{ $product->name }}">
+                            </div>
                         </button>
                         @foreach($product->gallery_urls as $galleryImage)
-                        <button @click="activeImage = '{{ $galleryImage }}'" 
+                        <button @click="if(activeImage !== '{{ $galleryImage }}') { animating = true; activeImage = '{{ $galleryImage }}' }" 
                                 :class="{'ring-2 ring-wood-600 ring-offset-2': activeImage === '{{ $galleryImage }}', 'opacity-70 hover:opacity-100': activeImage !== '{{ $galleryImage }}'}"
-                                class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-gray-100 snap-start transition-all">
-                            <img src="{{ $galleryImage }}" class="w-full h-full object-cover" alt="{{ $product->name }} Gallery">
+                                class="w-20 h-20 shrink-0 rounded-xl bg-gray-100 snap-start transition-all relative">
+                            <div class="w-full h-full rounded-xl overflow-hidden">
+                                <img src="{{ $galleryImage }}" class="w-full h-full object-cover" alt="{{ $product->name }} Gallery">
+                            </div>
                         </button>
                         @endforeach
                     </div>

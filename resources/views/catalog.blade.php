@@ -63,21 +63,28 @@
                             <p class="text-gray-500">Produk tidak ditemukan.</p>
                         </div>
                     @else
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                            @foreach($products as $product)
-                            <div class="bg-white rounded-2xl border border-gray-100 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" x-data="{ shown: false }" x-init="setTimeout(() => shown = true, 50)">
+                            @foreach($products as $index => $product)
+                            <div x-show="shown"
+                                 x-transition:enter="transition ease-out duration-500"
+                                 x-transition:enter-start="opacity-0 translate-y-8"
+                                 x-transition:enter-end="opacity-100 translate-y-0"
+                                 style="transition-delay: {{ $index * 50 }}ms"
+                                 class="bg-white rounded-2xl border border-gray-100 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                                 <div class="relative h-64 overflow-hidden">
-                                    <img src="{{ $product->image_url }}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="{{ $product->name }}">
+                                    <img src="{{ $product->image_url }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="{{ $product->name }}">
                                     @if($product->is_featured)
                                     <div class="absolute top-4 left-4">
                                         <span class="bg-wood-600 text-white text-[10px] px-2 py-1 rounded uppercase tracking-widest font-bold">Featured</span>
                                     </div>
                                     @endif
                                 </div>
-                                <div class="p-6">
-                                    <p class="text-xs text-wood-600 font-bold uppercase tracking-wider mb-2">{{ $product->category->name }}</p>
-                                    <h3 class="text-lg font-bold text-gray-900 mb-4 h-14 line-clamp-2">{{ $product->name }}</h3>
-                                    <a href="/katalog/{{ $product->slug }}" class="block w-full text-center py-3 bg-gray-900 border border-gray-900 text-white hover:bg-wood-600 hover:border-wood-600 font-semibold rounded-xl transition-all">Detail Produk</a>
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <p class="text-[10px] text-wood-600 font-bold uppercase tracking-widest mb-1">{{ $product->category->name }}</p>
+                                    <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 min-h-[3.5rem]">{{ $product->name }}</h3>
+                                    <div class="mt-auto">
+                                        <a href="/katalog/{{ $product->slug }}" class="block w-full text-center py-3 bg-gray-900 border border-gray-900 text-white hover:bg-wood-600 hover:border-wood-600 font-semibold rounded-xl transition-all text-sm">Detail Produk</a>
+                                    </div>
                                 </div>
                             </div>
                             @endforeach

@@ -36,7 +36,7 @@
                 <img src="{{ $coverImg }}" class="w-full h-full object-cover" alt="{{ $article->title }}">
             </div>
 
-            <div class="prose prose-lg prose-wood max-w-none text-gray-700 leading-relaxed first-letter:text-5xl first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-wood-600">
+            <div class="prose prose-lg prose-wood max-w-none text-gray-700 leading-relaxed">
                 {!! $article->content !!}
             </div>
 

@@ -20,15 +20,21 @@ class TestimonialForm
                             ->components([
                                 TextInput::make('name')
                                     ->label('Nama Pelanggan')
+                                    ->placeholder('Dhika Hafidz')
                                     ->required(),
                                 TextInput::make('role')
-                                    ->label('Keterangan/Jabatan (Contoh: Pelanggan Setia)'),
-                                TextInput::make('rating')
-                                    ->label('Rating (1-5)')
+                                    ->label('Status')
+                                    ->placeholder('Pelanggan Setia'),
+                                \Filament\Forms\Components\Select::make('rating')
+                                    ->label('Rating')
+                                    ->options([
+                                        1 => '1 Bintang',
+                                        2 => '2 Bintang',
+                                        3 => '3 Bintang',
+                                        4 => '4 Bintang',
+                                        5 => '5 Bintang',
+                                    ])
                                     ->required()
-                                    ->numeric()
-                                    ->minValue(1)
-                                    ->maxValue(5)
                                     ->default(5),
                             ]),
                     ]),
@@ -47,7 +53,12 @@ class TestimonialForm
                                     ->disk('public')
                                     ->directory('testimonials')
                                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                                    ->maxSize(2048),
+                                    ->maxSize(10240)
+                                    ->imageEditor()
+                                    ->imageResizeMode('cover')
+                                    ->imageResizeTargetWidth(800)
+                                    ->imageResizeTargetHeight(800)
+                                    ->imageResizeUpscale(false),
                                 Toggle::make('is_active')
                                     ->label('Tampilkan di Website')
                                     ->inline(false)

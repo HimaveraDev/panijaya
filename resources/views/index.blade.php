@@ -98,7 +98,7 @@
                                         <svg class="w-3 h-3 fill-current" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
                                     @endfor
                                 </div>
-                                <p class="text-gray-600 text-[0.8rem] leading-snug mb-3 flex-grow italic line-clamp-3">{{ $testimonial->content }}</p>
+                                <p class="text-gray-600 text-[0.8rem] leading-snug mb-3 flex-grow italic line-clamp-3 min-h-[3rem]">{{ \Illuminate\Support\Str::words($testimonial->content, 9, '...') }}</p>
                                 <div class="mt-auto pt-3 border-t border-gray-50">
                                     <h4 class="text-xs font-bold text-gray-900 truncate">{{ $testimonial->name }}</h4>
                                     <p class="text-wood-600 text-[10px] font-medium truncate">{{ $testimonial->role ?? 'Pelanggan Setia' }}</p>
@@ -197,7 +197,7 @@
                 
                 <div class="w-full lg:w-1/2 relative">
                     <img src="{{ $siteSettings->features_image_url }}" class="rounded-3xl shadow-2xl relative z-10" alt="Features">
-                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-wood-600 rounded-2xl -z-0 opacity-20"></div>
+                    <!-- <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-wood-600 rounded-2xl -z-0 opacity-20"></div> -->
                 </div>
             </div>
         </div>
@@ -216,17 +216,19 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 @foreach($featuredProducts as $product)
-                <div class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300">
+                <div class="bg-white rounded-xl border border-gray-100 overflow-hidden group shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full">
                     <div class="relative h-64 overflow-hidden">
                         <img src="{{ $product->image_url }}" class="w-full h-full object-cover transition-transform group-hover:scale-105" alt="{{ $product->name }}">
                         <div class="absolute top-4 left-4">
                             <span class="bg-wood-600 text-white text-[10px] px-2 py-1 rounded uppercase tracking-widest font-bold">Featured</span>
                         </div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-xs text-wood-600 font-bold uppercase tracking-wider mb-2">{{ $product->category->name }}</p>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">{{ $product->name }}</h3>
-                        <a href="/katalog/{{ $product->slug }}" class="block w-full text-center py-3 bg-gray-50 hover:bg-wood-600 hover:text-white text-gray-900 font-semibold rounded-lg transition-colors">Detail Produk</a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <p class="text-[10px] text-wood-600 font-bold uppercase tracking-widest mb-1">{{ $product->category->name }}</p>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 line-clamp-2 min-h-[3.5rem]">{{ $product->name }}</h3>
+                        <div class="mt-auto">
+                            <a href="/katalog/{{ $product->slug }}" class="block w-full text-center py-3 bg-gray-50 hover:bg-wood-600 hover:text-white text-gray-900 font-semibold rounded-lg transition-colors text-sm">Detail Produk</a>
+                        </div>
                     </div>
                 </div>
                 @endforeach
@@ -258,17 +260,19 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 @foreach($latestArticles as $article)
-                <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group">
+                <article class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group flex flex-col h-full">
                     <div class="h-56 overflow-hidden">
                         <img src="{{ $article->image_url }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" alt="{{ $article->title }}">
                     </div>
-                    <div class="p-8">
-                        <span class="text-wood-600 font-bold text-xs uppercase tracking-widest">{{ $article->published_at?->format('d M Y') }}</span>
-                        <h3 class="text-xl font-bold mt-2 mb-4 group-hover:text-wood-600 transition-colors leading-tight">
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-wood-600 font-bold text-[10px] uppercase tracking-widest">{{ $article->published_at?->format('d M Y') }}</span>
+                        <h3 class="text-lg font-bold mt-2 mb-4 group-hover:text-wood-600 transition-colors leading-tight line-clamp-3 min-h-[4.5rem]">
                             <a href="/artikel/{{ $article->slug }}">{{ $article->title }}</a>
                         </h3>
-                        <p class="text-gray-500 text-sm line-clamp-2 mb-6">{{ strip_tags($article->content) }}</p>
-                        <a href="/artikel/{{ $article->slug }}" class="text-gray-900 font-bold text-sm border-b-2 border-wood-500 pb-1">Baca Selengkapnya</a>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-6 min-h-[2.5rem]">{{ strip_tags($article->content) }}</p>
+                        <div class="mt-auto">
+                            <a href="/artikel/{{ $article->slug }}" class="text-gray-900 font-bold text-sm border-b-2 border-wood-500 pb-1 hover:text-wood-600 transition-colors">Baca Selengkapnya</a>
+                        </div>
                     </div>
                 </article>
                 @endforeach

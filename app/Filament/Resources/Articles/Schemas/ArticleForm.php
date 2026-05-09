@@ -31,7 +31,12 @@ class ArticleForm
                     ->disk('public')
                     ->directory('articles')
                     ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                    ->maxSize(2048),
+                    ->maxSize(10240)
+                    ->imageEditor()
+                    ->imageResizeMode('cover')
+                    ->imageResizeTargetWidth(800)
+                    ->imageResizeTargetHeight(800)
+                    ->imageResizeUpscale(false),
                 DateTimePicker::make('published_at')
                     ->label('Publish Date'),
             ]);
