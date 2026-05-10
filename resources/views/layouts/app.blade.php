@@ -16,11 +16,12 @@
 
     {{-- Open Graph / Facebook / WhatsApp (Agar bagus saat link di-share) --}}
     <meta property="og:site_name" content="{{ $siteSettings->site_name }}">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $title ?? $siteSettings->site_name }}">
-    <meta property="og:description" content="{{ $metaDescription ?? $siteSettings->hero_description ?? 'Penyedia kusen, pintu, dan jendela berkualitas tinggi.' }}">
-    <meta property="og:image" content="{{ $metaImage ?? $siteSettings->hero_image_url }}">
+    <meta property="og:type" content="website"> 
+    <meta property="og:url" content="{{ url()->current() }}"> 
+    <meta property="og:title" content="{{ $title ?? $siteSettings->site_name }}"> 
+    <meta property="og:description" content="{{ $metaDescription ?? $siteSettings->hero_description ?? 'Penyedia kusen, pintu, dan jendela berkualitas tinggi.' }}"> 
+    <meta property="og:image" content="{{ $metaImage ?? $siteSettings->hero_image_url }}"> 
+    <meta property="og:image:secure_url" content="{{ $metaImage ?? $siteSettings->hero_image_url }}">
 
     {{-- Twitter --}}
     <meta property="twitter:card" content="summary_large_image">
