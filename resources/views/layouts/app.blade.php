@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
+<head prefix="og: http://ogp.me/ns#">
     <meta name="google-site-verification" content="daReDEq_stIZ7Uvc53DcK8Zmiulnb5W1ljK7ZKXYhpQ" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +15,7 @@
     <link rel="canonical" href="{{ url()->current() }}">
 
     {{-- Open Graph / Facebook / WhatsApp (Agar bagus saat link di-share) --}}
+    <meta property="og:site_name" content="{{ $siteSettings->site_name }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:title" content="{{ $title ?? $siteSettings->site_name }}">
