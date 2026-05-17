@@ -14,31 +14,43 @@
                 <h2 class="text-2xl font-bold mb-8">Cara Berbelanja</h2>
                 <div class="space-y-6 mb-12">
                     <div class="flex items-start">
-                        <div class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">1</div>
+                        <div
+                            class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">
+                            1</div>
                         <div class="ml-4">
                             <h4 class="font-bold">Pilih Produk</h4>
-                            <p class="text-gray-600 text-sm">Pilih produk kusen atau pintu yang Anda inginkan dari katalog kami.</p>
+                            <p class="text-gray-600 text-sm">Pilih produk kusen atau pintu yang Anda inginkan dari katalog
+                                kami.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">2</div>
+                        <div
+                            class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">
+                            2</div>
                         <div class="ml-4">
                             <h4 class="font-bold">Konsultasi via WhatsApp</h4>
-                            <p class="text-gray-600 text-sm">Klik tombol WhatsApp untuk diskusi mengenai ukuran, material, dan harga.</p>
+                            <p class="text-gray-600 text-sm">Klik tombol WhatsApp untuk diskusi mengenai ukuran, material,
+                                dan harga.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">3</div>
+                        <div
+                            class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">
+                            3</div>
                         <div class="ml-4">
                             <h4 class="font-bold">Konfigurasi & DP</h4>
-                            <p class="text-gray-600 text-sm">Lakukan pembayaran Down Payment (DP) 50% setelah spesifikasi disepakati.</p>
+                            <p class="text-gray-600 text-sm">Lakukan pembayaran Down Payment (DP) 50% setelah spesifikasi
+                                disepakati.</p>
                         </div>
                     </div>
                     <div class="flex items-start">
-                        <div class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">4</div>
+                        <div
+                            class="bg-wood-600 text-white w-8 h-8 rounded-full flex items-center justify-center shrink-0 mt-1 font-bold">
+                            4</div>
                         <div class="ml-4">
                             <h4 class="font-bold">Produksi & Pelunasan</h4>
-                            <p class="text-gray-600 text-sm">Barang diproduksi dan pelunasan dilakukan sebelum pengiriman atau sesuai kesepakatan.</p>
+                            <p class="text-gray-600 text-sm">Barang diproduksi dan pelunasan dilakukan sebelum pengiriman
+                                atau sesuai kesepakatan.</p>
                         </div>
                     </div>
                 </div>
@@ -55,63 +67,130 @@
                     <div class="bg-white p-6 rounded-2xl border border-gray-200">
                         <h4 class="font-bold text-gray-500 text-xs uppercase tracking-widest mb-4">Tunai / Cash</h4>
                         <p class="font-bold text-lg mb-2">Pembayaran Langsung</p>
-                        <p class="text-sm text-gray-600">Dapat dilakukan di workshop kami di alamat yang tertera di footer.</p>
+                        <p class="text-sm text-gray-600">Dapat dilakukan di workshop kami di alamat yang tertera di footer.
+                        </p>
                     </div>
                 </div>
 
                 @if($siteSettings->hasMarketplace())
-                <div class="mt-8 border-t pt-8">
-                    <div class="flex items-center gap-3 mb-6">
-                        <h4 class="font-bold text-gray-900 text-lg">Alternatif Pembayaran (Marketplace)</h4>
-                        <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Praktis & Aman</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-6">Nikmati kemudahan transaksi melalui platform marketplace favorit Anda. Dapatkan fitur cicilan, promo gratis ongkir, dan perlindungan pembeli (e-wallet, paylater, credit card).</p>
-                    
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                        @if(isset($siteSettings->marketplace_links['shopee']))
-                        <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 hover:shadow-md transition-all group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500">
-                                    <img src="https://img.icons8.com/color/480/shopee.png" class="w-8 h-8 object-contain" alt="Shopee">
+                            <div class="mt-8 border-t pt-8">
+                                <div class="flex items-center gap-3 mb-6">
+                                    <h4 class="font-bold text-gray-900 text-lg">Alternatif Pembayaran (Marketplace)</h4>
+                                    <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Praktis &
+                                        Aman</span>
                                 </div>
-                                <span class="font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Shopee</span>
-                            </div>
-                            <svg class="w-5 h-5 text-gray-300 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                        @endif
+                                <p class="text-sm text-gray-600 mb-6">Nikmati kemudahan transaksi melalui platform marketplace favorit
+                                    Anda. Dapatkan fitur cicilan, promo gratis ongkir, dan perlindungan pembeli (e-wallet, paylater,
+                                    credit card).</p>
 
-                        @if(isset($siteSettings->marketplace_links['tokopedia']))
-                        <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:shadow-md transition-all group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
-                                    <img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png" class="w-8 h-8 object-contain" alt="Tokopedia">
-                                </div>
-                                <span class="font-bold text-gray-900 group-hover:text-green-500 transition-colors">Tokopedia</span>
-                            </div>
-                            <svg class="w-5 h-5 text-gray-300 group-hover:text-green-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                        @endif
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    @if(isset($siteSettings->marketplace_links['shopee']))
+                                        <a href="{{ $siteSettings->marketplace_links['shopee'] }}" target="_blank" rel="noopener"
+                                            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-orange-500 hover:shadow-md transition-all group">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-12 h-12 bg-orange-50 rounded-lg flex items-center justify-center text-orange-500">
+                                                    <img src="https://img.icons8.com/color/480/shopee.png" class="w-8 h-8 object-contain"
+                                                        alt="Shopee">
+                                                </div>
+                                                <span
+                                                    class="font-bold text-gray-900 group-hover:text-orange-500 transition-colors">Shopee</span>
+                                            </div>
+                                            <svg class="w-5 h-5 text-gray-300 group-hover:text-orange-500 transition-colors" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </a>
+                                    @endif
 
-                        @if(isset($siteSettings->marketplace_links['tiktok']))
-                        <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener" class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-black hover:shadow-md transition-all group">
-                            <div class="flex items-center gap-3">
-                                <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center text-gray-900">
-                                    <img src="https://img.icons8.com/color/480/tiktok--v1.png" class="w-8 h-8 object-contain" alt="TikTok Shop">
+                                    @if(isset($siteSettings->marketplace_links['tokopedia']))
+                                        <a href="{{ $siteSettings->marketplace_links['tokopedia'] }}" target="_blank" rel="noopener"
+                                            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-green-500 hover:shadow-md transition-all group">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center text-green-500">
+                                                    <img src="https://www.freepnglogos.com/uploads/logo-tokopedia-png/berita-tokopedia-info-berita-terbaru-tokopedia-6.png"
+                                                        class="w-8 h-8 object-contain" alt="Tokopedia">
+                                                </div>
+                                                <span
+                                                    class="font-bold text-gray-900 group-hover:text-green-500 transition-colors">Tokopedia</span>
+                                            </div>
+                                            <svg class="w-5 h-5 text-gray-300 group-hover:text-green-500 transition-colors" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </a>
+                                    @endif
+
+                                    @if(isset($siteSettings->marketplace_links['tiktok']))
+                                        <a href="{{ $siteSettings->marketplace_links['tiktok'] }}" target="_blank" rel="noopener"
+                                            class="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl hover:border-black hover:shadow-md transition-all group">
+                                            <div class="flex items-center gap-3">
+                                                <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center text-gray-900">
+                                                    <img src="https://img.icons8.com/color/480/tiktok--v1.png"
+                                                        class="w-8 h-8 object-contain" alt="TikTok Shop">
+                                                </div>
+                                                <span class="font-bold text-gray-900 group-hover:text-black transition-colors">TikTok
+                                                    Shop</span>
+                                            </div>
+                                            <svg class="w-5 h-5 text-gray-300 group-hover:text-black transition-colors" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </a>
+                                    @endif
                                 </div>
-                                <span class="font-bold text-gray-900 group-hover:text-black transition-colors">TikTok Shop</span>
                             </div>
-                            <svg class="w-5 h-5 text-gray-300 group-hover:text-black transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </a>
-                        @endif
+                        </div>
                     </div>
-                </div>
                 @endif
+    </section>
 
-                <div class="mt-12 bg-wood-50 p-6 rounded-2xl border border-wood-100 flex items-center">
-                    <svg class="w-6 h-6 text-wood-600 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <p class="text-sm text-wood-900">Pastikan Anda hanya melakukan transfer ke nomor rekening resmi di atas untuk keamanan transaksi.</p>
+    <!-- Payment Methods List -->
+    <section class=" bg-white">
+        <div class=" border-gray-100">
+            <p class="text-center text-sm font-semibold text-gray-900 uppercase tracking-widest">Mendukung
+                Berbagai Metode Pembayaran Aman</p>
+            <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://images.archbee.com/ueSgidS-H3kdWkcRhVS2v-ox8uhzkO7AuytjK0U4Shy-20250903-041516.png?format=webp&width=800
+                        class="h-25 sm:h-25">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://images.seeklogo.com/logo-png/43/1/gopaylater-logo-png_seeklogo-438540.png
+                        class="h-40 sm:h-40">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://images.seeklogo.com/logo-png/39/1/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png
+                        class="h-35 sm:h-35">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://upload.wikimedia.org/wikipedia/commons/d/d3/Visa_Inc._logo_%282005%E2%80%932014%29.png
+                        class="h-10 sm:h-10">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://images.seeklogo.com/logo-png/36/1/gpn-logo-png_seeklogo-365866.png
+                        class="h-20 sm:h-20">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg
+                        class="h-15 sm:h-15">
+                </div>
+            </div>
+            <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://www.bca.co.id/-/media/Feature/Card/List-Card/Tentang-BCA/Brand-Assets/Logo-BCA/Logo-BCA_Biru.png
+                        class="h-30 sm:h-30">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://upload.wikimedia.org/wikipedia/commons/5/52/Dana_logo.png class="h-10 sm:h-10">
+                </div>
+                <div class="bg-white rounded-xl flex items-center justify-center">
+                    <img src=https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg class="h-10 sm:h-10">
                 </div>
             </div>
         </div>
+
     </section>
+
 @endsection

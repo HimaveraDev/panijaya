@@ -71,6 +71,42 @@
                 </a>
                 @endif
             </div>
+
+            <!-- Payment Methods List -->
+            <div class="mt-12 pt-8 border-t border-gray-100">
+                <p class="text-center text-sm font-semibold text-gray-900 uppercase tracking-widest">Mendukung Berbagai Metode Pembayaran Aman</p>
+                <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://images.archbee.com/ueSgidS-H3kdWkcRhVS2v-ox8uhzkO7AuytjK0U4Shy-20250903-041516.png?format=webp&width=800 class="h-25 sm:h-25">
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://images.seeklogo.com/logo-png/43/1/gopaylater-logo-png_seeklogo-438540.png class="h-40 sm:h-40">        
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://images.seeklogo.com/logo-png/39/1/quick-response-code-indonesia-standard-qris-logo-png_seeklogo-391791.png class="h-35 sm:h-35">
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://upload.wikimedia.org/wikipedia/commons/d/d3/Visa_Inc._logo_%282005%E2%80%932014%29.png class="h-10 sm:h-10">
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://images.seeklogo.com/logo-png/36/1/gpn-logo-png_seeklogo-365866.png class="h-20 sm:h-20">
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg class="h-15 sm:h-15">
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://www.bca.co.id/-/media/Feature/Card/List-Card/Tentang-BCA/Brand-Assets/Logo-BCA/Logo-BCA_Biru.png class="h-30 sm:h-30">
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://upload.wikimedia.org/wikipedia/commons/5/52/Dana_logo.png class="h-10 sm:h-10">
+                    </div>
+                    <div class="bg-white rounded-xl flex items-center justify-center">
+                        <img src=https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg class="h-10 sm:h-10">
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     @endif
